@@ -17,6 +17,7 @@ next-env.d.ts
 
 # tooling
 playwright-report/
+.playwright-mcp/
 test-results/
 storybook-static/
 .vercel

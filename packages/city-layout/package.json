@@ -1,6 +1,8 @@
 {
   "name": "@devcity/city-layout",
   "version": "0.0.0",
+  "author": "Joey Oosenbrug (https://github.com/joeykwispel)",
+  "license": "MIT",
   "private": true,
   "type": "module",
   "exports": {
@@ -9,10 +11,14 @@
   "scripts": {
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run"
   },
   "devDependencies": {
+    "@types/d3-hierarchy": "^3.1.7",
     "typescript": "~5.9.3",
     "vitest": "^5.0.1"
+  },
+  "dependencies": {
+    "d3-hierarchy": "^3.1.2"
   }
 }

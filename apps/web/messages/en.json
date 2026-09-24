@@ -145,6 +145,10 @@
     "list": "List",
     "share": "Copy link",
     "copied": "Link copied",
-    "copyManually": "Copy this link:"
+    "copyManually": "Copy this link:",
+    "savePng": "Save PNG",
+    "minimap": "Minimap",
+    "minimapHint": "Click to move the camera there",
+    "pngCaption": "DevCity · {layer} · joeyoosenbrug.nl"
   }
 }

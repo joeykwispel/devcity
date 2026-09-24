@@ -145,6 +145,10 @@
     "list": "Lijst",
     "share": "Link kopiëren",
     "copied": "Link gekopieerd",
-    "copyManually": "Kopieer deze link:"
+    "copyManually": "Kopieer deze link:",
+    "savePng": "PNG opslaan",
+    "minimap": "Minikaart",
+    "minimapHint": "Klik om de camera daarheen te verplaatsen",
+    "pngCaption": "DevCity · {layer} · joeyoosenbrug.nl"
   }
 }

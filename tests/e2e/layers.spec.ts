@@ -90,3 +90,19 @@ test('unknown URLs get the 404 page', async ({ page }) => {
   expect(response?.status()).toBe(404)
   await expect(page.getByText('Lost in the city')).toBeVisible()
 })
+
+test('saves the current view as a PNG and shows the minimap', async ({ page }) => {
+  await page.goto('/en/')
+  await expect(page.locator('canvas')).toBeVisible()
+  const minimap = page.locator('svg.cursor-crosshair')
+  await expect(minimap).toBeVisible()
+
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    page.getByRole('button', { name: 'Save PNG' }).click(),
+  ])
+  expect(download.suggestedFilename()).toMatch(/^devcity-skills-\d{4}-\d{2}-\d{2}\.png$/)
+
+  await page.getByRole('button', { name: 'Minimap' }).click()
+  await expect(minimap).toBeHidden()
+})

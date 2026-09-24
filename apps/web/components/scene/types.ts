@@ -39,6 +39,4 @@ export interface CitySceneProps {
   labelContainer: RefObject<HTMLDivElement | null>
   /** Direction the camera looks from, before scaling to the city size. Defaults to isometric. */
   cameraFrom?: Vec3
-  /** Filled by the scene so the page can export a PNG of the canvas. */
-  canvasRef?: RefObject<HTMLCanvasElement | null>
 }

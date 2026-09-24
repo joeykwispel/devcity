@@ -1,9 +1,10 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useMemo, useRef, type ReactNode, type RefObject } from 'react'
+import { useMemo, useRef, type ReactNode } from 'react'
 import { SceneLoading } from '@/components/scene-loading'
 import { useCityStore } from '@/lib/city-store'
+import { Minimap } from './minimap'
 import { SceneLabels, type SceneLabel } from './scene-labels'
 import type { SceneBuilding, SceneDistrict, Vec3 } from './types'
 
@@ -28,7 +29,6 @@ export function CityView({
   tooltip,
   markers = NO_MARKERS,
   cameraFrom,
-  canvasRef,
 }: {
   size: number
   districts: LabelledDistrict[]
@@ -38,7 +38,6 @@ export function CityView({
   /** Small text labels on the ground, e.g. years along the career boulevard. */
   markers?: { id: string; position: Vec3; label: string }[]
   cameraFrom?: Vec3
-  canvasRef?: RefObject<HTMLCanvasElement | null>
 }) {
   const labelContainer = useRef<HTMLDivElement>(null)
   const hovered = useCityStore((s) => s.hovered)
@@ -87,9 +86,11 @@ export function CityView({
         anchors={anchors}
         labelContainer={labelContainer}
         cameraFrom={cameraFrom}
-        canvasRef={canvasRef}
       />
       <SceneLabels labels={labels} containerRef={labelContainer} />
+      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] right-6 hidden lg:block">
+        <Minimap districts={districts} buildings={buildings} />
+      </div>
     </>
   )
 }

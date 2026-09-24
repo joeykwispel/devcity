@@ -1,7 +1,7 @@
 'use client'
 
 import { useFrame, type ThreeEvent } from '@react-three/fiber'
-import { useLayoutEffect, useMemo, useRef } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import {
   BoxGeometry,
   Color,
@@ -13,6 +13,7 @@ import {
 } from 'three'
 import { useCityStore } from '@/lib/city-store'
 import type { SceneBuilding } from './types'
+import { createWindowMaterial } from './window-material'
 
 const box = new BoxGeometry(1, 1, 1)
 const matrix = new Matrix4()
@@ -44,6 +45,9 @@ export function InstancedBuildings({
   const focused = useCityStore((s) => s.focused)
   const hover = useCityStore((s) => s.hover)
   const select = useCityStore((s) => s.select)
+
+  const material = useMemo(() => createWindowMaterial(), [])
+  useEffect(() => () => material.dispose(), [material])
 
   const baseColors = useMemo(() => buildings.map((b) => new Color(b.color)), [buildings])
 
@@ -96,7 +100,7 @@ export function InstancedBuildings({
       // A different building count needs a new InstancedMesh (its capacity is fixed).
       key={buildings.length}
       ref={mesh}
-      args={[box, undefined, buildings.length]}
+      args={[box, material, buildings.length]}
       castShadow
       receiveShadow
       onPointerMove={(e) => {
@@ -113,8 +117,6 @@ export function InstancedBuildings({
         e.stopPropagation()
         select(idAt(e))
       }}
-    >
-      <meshStandardMaterial roughness={0.55} metalness={0.1} />
-    </instancedMesh>
+    />
   )
 }

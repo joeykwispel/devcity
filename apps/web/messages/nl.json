@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "DevCity · Joey Oosenbrug",
-    "description": "Het cv en de GitHub-activiteit van Joey Oosenbrug, als een 3D-stad om doorheen te vliegen."
+    "description": "Het cv en de GitHub-activiteit van Joey Oosenbrug, als een 3D-stad om doorheen te vliegen.",
+    "layerTitle": "{layer} · DevCity · Joey Oosenbrug"
   },
   "header": {
     "portfolio": "{name}, portfolio",
@@ -132,5 +133,18 @@
     "openFile": "Bestand openen op GitHub",
     "openRepo": "Openen op GitHub",
     "empty": "Kies een repository om de stad te bouwen."
+  },
+  "list": {
+    "filter": "Filter op naam",
+    "noMatches": "Niets gevonden met dit filter.",
+    "more": "Nog {count, plural, one {# item} other {# items}}; gebruik het filter om ze te vinden."
+  },
+  "toolbar": {
+    "view": "Weergave",
+    "city": "3D-stad",
+    "list": "Lijst",
+    "share": "Link kopiëren",
+    "copied": "Link gekopieerd",
+    "copyManually": "Kopieer deze link:"
   }
 }

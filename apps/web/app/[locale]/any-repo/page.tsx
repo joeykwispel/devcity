@@ -1,6 +1,9 @@
 import { Suspense } from 'react'
 import { AnyRepoView } from '@/features/any-repo/any-repo-view'
-import { pageLocale } from '@/i18n/page-locale'
+import { layerMetadata, pageLocale } from '@/i18n/page-locale'
+
+export const generateMetadata = ({ params }: PageProps<'/[locale]/any-repo'>) =>
+  layerMetadata(params, 'anyRepo')
 
 export default async function AnyRepoPage({ params }: PageProps<'/[locale]/any-repo'>) {
   await pageLocale(params)

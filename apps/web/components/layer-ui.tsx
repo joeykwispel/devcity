@@ -1,7 +1,9 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import type { ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
+import { SceneToolbar } from './scene-toolbar'
+import { useCityStore } from '@/lib/city-store'
 
 /** Code-style section head from the portfolio: "01 ~/joey/skills.ts" and "<Skills />". */
 export function LayerIntro({
@@ -68,6 +70,16 @@ export function DetailPanel({
   children: ReactNode
 }) {
   const t = useTranslations('common')
+
+  // Escape closes the panel, wherever focus is.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
   return (
     <aside
       aria-live="polite"
@@ -131,26 +143,55 @@ export function CloseButton({ label, onClick }: { label: string; onClick: () => 
   )
 }
 
-/** Standard overlay slots around a full-screen scene. */
+/**
+ * Standard layout of a layer. In city view: the scene full screen with the intro card, toolbar,
+ * detail panel and hint floating over it. In list view: intro and list side by side (stacked on
+ * phones) in a scrollable page, and no WebGL at all.
+ */
 export function LayerShell({
   scene,
   intro,
   panel,
   hint,
-  children,
+  list,
+  tools,
 }: {
   scene: ReactNode
   intro: ReactNode
   panel?: ReactNode
   hint?: string
-  children?: ReactNode
+  /** Renders the layer as a list; interactive in list view, screen-reader-only in city view. */
+  list?: (interactive: boolean) => ReactNode
+  /** Extra toolbar buttons for this layer. */
+  tools?: ReactNode
 }) {
+  const view = useCityStore((s) => s.view)
+
+  if (view === 'list' && list)
+    return (
+      <>
+        <div className="absolute inset-0 overflow-y-auto pt-[calc(var(--nav-h)+0.5rem)] pb-24">
+          <div className="mx-auto grid w-[min(1360px,100%-2rem)] items-start gap-3 lg:grid-cols-[380px_1fr]">
+            <div className="grid gap-3 lg:sticky lg:top-0">
+              {intro}
+              <SceneToolbar>{tools}</SceneToolbar>
+            </div>
+            <div className="glass panel p-4 sm:p-5">{list(true)}</div>
+          </div>
+        </div>
+        <div className="pointer-events-none fixed right-4 bottom-4 z-10 grid w-[min(380px,calc(100%-2rem))] sm:right-6">
+          {panel}
+        </div>
+      </>
+    )
+
   return (
     <>
       <div className="absolute inset-0">{scene}</div>
 
-      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 grid w-[min(380px,calc(100%-2rem))] gap-3 sm:left-6">
+      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 grid max-h-[calc(100dvh-var(--nav-h)-1.5rem)] w-[min(380px,calc(100%-2rem))] gap-3 overflow-y-auto [scrollbar-width:none] sm:left-6">
         {intro}
+        <SceneToolbar>{tools}</SceneToolbar>
       </div>
 
       <div className="pointer-events-none absolute right-4 bottom-4 grid w-[min(380px,calc(100%-2rem))] sm:right-6">
@@ -158,13 +199,13 @@ export function LayerShell({
       </div>
 
       {hint && (
-        <p className="pointer-events-none absolute bottom-4 left-6 hidden font-mono text-[0.72rem] text-muted lg:block">
+        <p className="pointer-events-none absolute bottom-4 left-6 hidden font-mono text-[0.72rem] text-muted xl:block">
           <span aria-hidden="true">{'// '}</span>
           {hint}
         </p>
       )}
 
-      {children}
+      {list?.(false)}
     </>
   )
 }

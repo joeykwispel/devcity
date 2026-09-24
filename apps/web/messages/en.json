@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "DevCity · Joey Oosenbrug",
-    "description": "The CV and GitHub activity of Joey Oosenbrug, rendered as an explorable 3D city."
+    "description": "The CV and GitHub activity of Joey Oosenbrug, rendered as an explorable 3D city.",
+    "layerTitle": "{layer} · DevCity · Joey Oosenbrug"
   },
   "header": {
     "portfolio": "{name}, portfolio",
@@ -132,5 +133,18 @@
     "openFile": "Open file on GitHub",
     "openRepo": "Open on GitHub",
     "empty": "Pick a repository to build its city."
+  },
+  "list": {
+    "filter": "Filter by name",
+    "noMatches": "Nothing matches this filter.",
+    "more": "{count, plural, one {# more item} other {# more items}}; use the filter to find them."
+  },
+  "toolbar": {
+    "view": "View",
+    "city": "3D city",
+    "list": "List",
+    "share": "Copy link",
+    "copied": "Link copied",
+    "copyManually": "Copy this link:"
   }
 }

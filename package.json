@@ -22,9 +22,12 @@
     "test": "turbo run test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "data": "node --env-file-if-exists=apps/web/.env.local scripts/build-data.ts"
+    "data": "node --env-file-if-exists=apps/web/.env.local scripts/build-data.ts",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
     "prettier": "^3.9.9",
     "turbo": "^2.11.3",
     "typescript": "~5.9.3"

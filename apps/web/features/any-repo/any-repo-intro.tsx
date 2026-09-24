@@ -5,6 +5,8 @@ import type { TreeCityLayout } from '@devcity/city-layout'
 import { useFormatter, useTranslations } from 'next-intl'
 import { useState, type FormEvent } from 'react'
 import { LayerIntro, Stat } from '@/components/layer-ui'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { tone } from '@/lib/colors'
 import { languageColor, languageOfPath } from '@/lib/language-colors'
 import { useFormatters } from '@/lib/locale'
@@ -60,7 +62,7 @@ export function AnyRepoIntro({
           {t('label')}
         </label>
         <div className="flex gap-1.5">
-          <input
+          <Input
             id="repo-input"
             value={value}
             onChange={(e) => setValue(e.target.value)}
@@ -69,11 +71,11 @@ export function AnyRepoIntro({
             spellCheck={false}
             aria-invalid={invalid}
             aria-describedby={invalid ? 'repo-input-error' : undefined}
-            className="h-9 min-w-0 flex-1 rounded-[var(--radius-sm)] border border-border bg-surface px-3 font-mono text-sm text-text placeholder:text-muted focus-visible:border-accent"
+            className="flex-1"
           />
-          <button type="submit" className="chip h-9 bg-accent font-bold text-accent-ink">
+          <Button type="submit" variant="primary">
             {t('submit')}
-          </button>
+          </Button>
         </div>
         {invalid && (
           <p id="repo-input-error" className="font-mono text-[0.75rem] text-accent-2-text">
@@ -131,7 +133,7 @@ export function AnyRepoIntro({
                     aria-hidden="true"
                   />
                   {lang}
-                  <span className="opacity-70">
+                  <span>
                     {format.number(bytes / totalSize, {
                       style: 'percent',
                       maximumFractionDigits: 0,

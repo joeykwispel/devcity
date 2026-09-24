@@ -3,6 +3,7 @@
 import type { MonthIndex } from '@devcity/city-layout'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import { CityList, type ListGroup } from '@/components/city-list'
 import { LayerShell } from '@/components/layer-ui'
 import { CityView } from '@/components/scene/city-view'
 import { useLayerState } from '@/lib/city-store'
@@ -14,7 +15,6 @@ import { useTheme } from '@/lib/theme'
 import { SkillPanel } from './skill-panel'
 import { buildSkillsCity } from './skills-city'
 import { SkillsLegend } from './skills-legend'
-import { SkillsList } from './skills-list'
 
 export function SkillsView({ buildMonth }: { buildMonth: MonthIndex }) {
   useLayerState()
@@ -48,6 +48,33 @@ export function SkillsView({ buildMonth }: { buildMonth: MonthIndex }) {
     [city, theme],
   )
 
+  const groups = useMemo<ListGroup[]>(
+    () =>
+      city.layout.districts.map((d) => {
+        const category = city.categories.get(d.id)
+        return {
+          id: d.id,
+          label: category ? l(category.label) : d.id,
+          color: hueCss(category?.hue ?? 0, theme),
+          items: city.layout.buildings
+            .filter((b) => b.district === d.id)
+            .map((b) => {
+              const skill = city.skills.get(b.id)
+              return {
+                id: b.id,
+                name: skill?.label ? l(skill.label) : b.id,
+                value:
+                  b.months > 0
+                    ? t('common.years', { years: format.years(b.months), count: b.months / 12 })
+                    : t('skills.listed'),
+                magnitude: b.months,
+              }
+            }),
+        }
+      }),
+    [city, theme, l, t, format],
+  )
+
   const tooltip = (id: string) => {
     const skill = city.skills.get(id)
     const stat = city.stats.get(id)
@@ -74,8 +101,7 @@ export function SkillsView({ buildMonth }: { buildMonth: MonthIndex }) {
       intro={<SkillsLegend />}
       panel={<SkillPanel city={city} />}
       hint={t('common.hint')}
-    >
-      <SkillsList city={city} />
-    </LayerShell>
+      list={(interactive) => <CityList groups={groups} interactive={interactive} />}
+    />
   )
 }

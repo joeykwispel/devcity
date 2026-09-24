@@ -2,6 +2,7 @@
 
 import { useFormatter, useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import { CityList, type ListGroup } from '@/components/city-list'
 import { LayerShell } from '@/components/layer-ui'
 import { CityView } from '@/components/scene/city-view'
 import { useLayerState } from '@/lib/city-store'
@@ -46,6 +47,38 @@ export function ReposView({ buildDay }: { buildDay: number }) {
     [city, theme],
   )
 
+  const groups = useMemo<ListGroup[]>(
+    () =>
+      city.layout.districts.map((d) => ({
+        id: d.id,
+        label: d.id === CONTRIBUTIONS_DISTRICT ? t('repos.contributions') : d.id,
+        color: hueCss(d.id === CONTRIBUTIONS_DISTRICT ? 262 : 168, theme),
+        items: city.layout.buildings
+          .filter((b) => b.district === d.id)
+          .map((b) => {
+            const contribution = city.contributions.get(b.id)
+            const meta = city.layout.meta.get(b.id)
+            return contribution
+              ? {
+                  id: b.id,
+                  name: contribution.fullName,
+                  value: `${contribution.pullRequests.length} PR`,
+                  magnitude: contribution.pullRequests.length,
+                }
+              : {
+                  id: b.id,
+                  name: meta?.language ?? b.id,
+                  value: format.number(meta?.share ?? 0, {
+                    style: 'percent',
+                    maximumFractionDigits: 1,
+                  }),
+                  magnitude: meta?.share,
+                }
+          }),
+      })),
+    [city, theme, t, format],
+  )
+
   const tooltip = (id: string) => {
     const contribution = city.contributions.get(id)
     if (contribution)
@@ -80,21 +113,7 @@ export function ReposView({ buildDay }: { buildDay: number }) {
       intro={<ReposIntro city={city} />}
       panel={<ReposPanel city={city} />}
       hint={t('common.hint')}
-    >
-      <div className="sr-only">
-        <ul>
-          {[...city.repos.values()].map((r) => (
-            <li key={r.name}>
-              {r.name}: {r.description} ({Object.keys(r.languages).join(', ') || r.language})
-            </li>
-          ))}
-          {[...city.contributions.values()].map((c) => (
-            <li key={c.fullName}>
-              {t('repos.contributions')}: {c.fullName}, {c.pullRequests.length} PR
-            </li>
-          ))}
-        </ul>
-      </div>
-    </LayerShell>
+      list={(interactive) => <CityList groups={groups} interactive={interactive} />}
+    />
   )
 }

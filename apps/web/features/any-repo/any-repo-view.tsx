@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import { CityList, type ListGroup } from '@/components/city-list'
 import { LayerShell } from '@/components/layer-ui'
 import { CityView, type LabelledDistrict } from '@/components/scene/city-view'
 import { usePathname, useRouter } from '@/i18n/routing'
@@ -79,6 +80,20 @@ function AnyRepo() {
     [layout, theme],
   )
 
+  const groups = useMemo<ListGroup[]>(() => {
+    if (!layout) return []
+    const accent = hueCss(168, theme)
+    return layout.districts.map((d) => ({
+      id: d.id,
+      label: d.id,
+      color: accent,
+      items: layout.buildings
+        .filter((b) => b.district === d.id)
+        .sort((a, b) => b.size - a.size)
+        .map((b) => ({ id: b.id, name: b.id, value: format.bytes(b.size), magnitude: b.size })),
+    }))
+  }, [layout, theme, format])
+
   const tooltip = (id: string) => {
     const file = layout?.buildings.find((b) => b.id === id)
     return file ? { title: id, detail: format.bytes(file.size) } : null
@@ -116,6 +131,13 @@ function AnyRepo() {
       }
       panel={repo.data && layout && <AnyRepoPanel repo={repo.data} layout={layout} />}
       hint={layout ? t('common.hint') : undefined}
+      list={
+        layout
+          ? (interactive) => (
+              <CityList groups={groups} interactive={interactive} limit={200} filterable />
+            )
+          : undefined
+      }
     />
   )
 }

@@ -3,6 +3,7 @@
 import type { MonthIndex } from '@devcity/city-layout'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import { CityList, type ListGroup } from '@/components/city-list'
 import { LayerShell } from '@/components/layer-ui'
 import { CityView } from '@/components/scene/city-view'
 import { useLayerState } from '@/lib/city-store'
@@ -13,7 +14,6 @@ import { useCurrentMonth } from '@/lib/now'
 import { useTheme } from '@/lib/theme'
 import { buildCareerCity, kindHue } from './career-city'
 import { CareerIntro } from './career-intro'
-import { CareerList } from './career-list'
 import { CareerPanel } from './career-panel'
 
 export function CareerView({ buildMonth }: { buildMonth: MonthIndex }) {
@@ -55,6 +55,40 @@ export function CareerView({ buildMonth }: { buildMonth: MonthIndex }) {
     [city],
   )
 
+  const groups = useMemo<ListGroup[]>(() => {
+    const months = (id: string) => {
+      const b = city.layout.buildings.find((x) => x.id === id)
+      return b ? b.end - b.start + 1 : 0
+    }
+    return [
+      {
+        id: 'work',
+        label: t('career.sides.work'),
+        color: hueCss(kindHue.work, theme),
+        items: [...city.roles.values()]
+          .sort((a, b) => b.start.localeCompare(a.start))
+          .map((r) => ({
+            id: r.id,
+            name: `${l(r.title)} · ${r.company}`,
+            value: format.duration(months(r.id)),
+            magnitude: months(r.id),
+          })),
+      },
+      {
+        id: 'education',
+        label: t('career.sides.education'),
+        color: hueCss(kindHue.education, theme),
+        items: [...city.education.values()]
+          .sort((a, b) => b.endYear - a.endYear)
+          .map((e) => ({
+            id: e.id,
+            name: e.courses ? `${l(e.title)}: ${e.courses.join(', ')}` : l(e.title),
+            value: e.startYear === e.endYear ? String(e.endYear) : `${e.startYear} – ${e.endYear}`,
+          })),
+      },
+    ]
+  }, [city, theme, l, t, format])
+
   const tooltip = (id: string) => {
     const building = city.layout.buildings.find((b) => b.id === id)
     const role = city.roles.get(id)
@@ -82,8 +116,7 @@ export function CareerView({ buildMonth }: { buildMonth: MonthIndex }) {
       intro={<CareerIntro city={city} />}
       panel={<CareerPanel city={city} />}
       hint={t('common.hint')}
-    >
-      <CareerList city={city} />
-    </LayerShell>
+      list={(interactive) => <CityList groups={groups} interactive={interactive} />}
+    />
   )
 }

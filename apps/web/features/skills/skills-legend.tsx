@@ -38,7 +38,7 @@ export function SkillsLegend() {
                 aria-hidden="true"
               />
               {l(c.label)}
-              <span className="opacity-70">{counts.get(c.id) ?? 0}</span>
+              <span>{counts.get(c.id) ?? 0}</span>
             </button>
           </li>
         ))}

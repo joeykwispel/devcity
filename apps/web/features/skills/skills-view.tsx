@@ -1,47 +1,81 @@
 'use client'
 
-import dynamic from 'next/dynamic'
+import type { MonthIndex } from '@devcity/city-layout'
+import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import { LayerShell } from '@/components/layer-ui'
+import { CityView } from '@/components/scene/city-view'
+import { useLayerState } from '@/lib/city-store'
+import { buildingCss, hueCss } from '@/lib/colors'
 import { cv } from '@/lib/cv'
+import { useFormatters, useLocalized } from '@/lib/locale'
+import { useCurrentMonth } from '@/lib/now'
+import { useTheme } from '@/lib/theme'
 import { SkillPanel } from './skill-panel'
 import { buildSkillsCity } from './skills-city'
 import { SkillsLegend } from './skills-legend'
 import { SkillsList } from './skills-list'
 
-// three.js only runs in the browser and is heavy, so it is split out and loaded client-side.
-const SkillsCityScene = dynamic(() => import('./skills-city-scene'), {
-  ssr: false,
-  loading: () => (
-    <div className="grid h-full place-items-center font-mono text-sm text-muted">
-      <span className="animate-pulse">building city...</span>
-    </div>
-  ),
-})
+export function SkillsView({ buildMonth }: { buildMonth: MonthIndex }) {
+  useLayerState()
+  const t = useTranslations()
+  const l = useLocalized()
+  const format = useFormatters()
+  const theme = useTheme()
+  const now = useCurrentMonth(buildMonth)
+  const city = useMemo(() => buildSkillsCity(cv, now), [now])
 
-export function SkillsView() {
-  // Experience is derived from "now", so it stays current without redeploying.
-  const city = useMemo(() => buildSkillsCity(cv), [])
+  const districts = useMemo(
+    () =>
+      city.layout.districts.map((d) => {
+        const category = city.categories.get(d.id)
+        return {
+          ...d,
+          color: hueCss(category?.hue ?? 0, theme),
+          label: category ? l(category.label) : d.id,
+        }
+      }),
+    [city, theme, l],
+  )
+
+  const buildings = useMemo(
+    () =>
+      city.layout.buildings.map((b) => ({
+        ...b,
+        group: b.district,
+        color: buildingCss(city.categories.get(b.district)?.hue ?? 0, theme, b.months === 0),
+      })),
+    [city, theme],
+  )
+
+  const tooltip = (id: string) => {
+    const skill = city.skills.get(id)
+    const stat = city.stats.get(id)
+    if (!skill || !stat) return null
+    return {
+      title: skill.label ? l(skill.label) : skill.id,
+      detail:
+        stat.months > 0
+          ? t('common.yearsShort', { years: format.years(stat.months) })
+          : t('skills.listed'),
+    }
+  }
 
   return (
-    <>
-      <div className="absolute inset-0">
-        <SkillsCityScene city={city} />
-      </div>
-
-      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 grid w-[min(380px,calc(100%-2rem))] sm:left-6">
-        <SkillsLegend />
-      </div>
-
-      <div className="pointer-events-none absolute right-4 bottom-4 grid w-[min(360px,calc(100%-2rem))] sm:right-6">
-        <SkillPanel city={city} />
-      </div>
-
-      <p className="pointer-events-none absolute bottom-4 left-6 hidden font-mono text-[0.72rem] text-muted lg:block">
-        <span aria-hidden="true">{'// '}</span>drag to pan · right-drag to rotate · scroll to zoom ·
-        click a building
-      </p>
-
+    <LayerShell
+      scene={
+        <CityView
+          size={city.layout.width}
+          districts={districts}
+          buildings={buildings}
+          tooltip={tooltip}
+        />
+      }
+      intro={<SkillsLegend />}
+      panel={<SkillPanel city={city} />}
+      hint={t('common.hint')}
+    >
       <SkillsList city={city} />
-    </>
+    </LayerShell>
   )
 }

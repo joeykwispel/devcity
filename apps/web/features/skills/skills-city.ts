@@ -7,7 +7,6 @@ import {
   type SkillStat,
 } from '@devcity/city-layout'
 import type { Category, CV, Role, Skill } from '@/lib/cv'
-import type { Theme } from '@/lib/theme'
 
 export interface SkillsCity {
   layout: CityLayout
@@ -31,7 +30,3 @@ export function buildSkillsCity(cv: CV, now: MonthIndex = monthIndexOf(new Date(
     roles: new Map(cv.roles.map((r) => [r.id, r])),
   }
 }
-
-/** Category colour, matching the chip colours on joeyoosenbrug.nl. Comma syntax so three.js can parse it too. */
-export const categoryCss = (hue: number, theme: Theme = 'dark') =>
-  theme === 'dark' ? `hsl(${hue}, 60%, 68%)` : `hsl(${hue}, 55%, 38%)`

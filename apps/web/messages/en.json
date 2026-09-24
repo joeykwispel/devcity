@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "DevCity · Joey Oosenbrug",
+    "description": "The CV and GitHub activity of Joey Oosenbrug, rendered as an explorable 3D city."
+  },
+  "header": {
+    "portfolio": "{name}, portfolio",
+    "layers": "City layers",
+    "theme": "Switch to {theme, select, light {light} other {dark}} theme",
+    "language": "Language",
+    "switchTo": "Nederlands"
+  },
+  "layers": {
+    "skills": "Skills",
+    "career": "Career",
+    "repos": "My repos",
+    "anyRepo": "Any repo"
+  },
+  "common": {
+    "loading": "building city...",
+    "close": "Close details",
+    "now": "now",
+    "years": "{years} {count, plural, one {yr} other {yrs}}",
+    "yearsShort": "{years}y",
+    "yearsLong": "{years} {count, plural, one {year} other {years}}",
+    "hint": "drag to pan · right-drag to rotate · scroll to zoom · click a building",
+    "comingSoon": "This layer is under construction."
+  },
+  "skills": {
+    "title": "Skills",
+    "intro": "Every skill on my CV is a building. The taller it is, the more years I have used it in real projects.",
+    "districts": "Districts",
+    "details": "{name} details",
+    "experience": "experience",
+    "district": "district",
+    "usedAt": "used at",
+    "listed": "listed",
+    "listedLong": "listed on CV",
+    "notTied": "On my CV, but not tied to a specific role, so it gets the minimum height."
+  }
+}

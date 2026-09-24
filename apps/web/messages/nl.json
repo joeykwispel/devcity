@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "DevCity · Joey Oosenbrug",
+    "description": "Het cv en de GitHub-activiteit van Joey Oosenbrug, als een 3D-stad om doorheen te vliegen."
+  },
+  "header": {
+    "portfolio": "{name}, portfolio",
+    "layers": "Stadslagen",
+    "theme": "Wissel naar {theme, select, light {licht} other {donker}} thema",
+    "language": "Taal",
+    "switchTo": "English"
+  },
+  "layers": {
+    "skills": "Skills",
+    "career": "Loopbaan",
+    "repos": "Mijn repo's",
+    "anyRepo": "Elke repo"
+  },
+  "common": {
+    "loading": "stad wordt gebouwd...",
+    "close": "Details sluiten",
+    "now": "nu",
+    "years": "{years} jr",
+    "yearsShort": "{years}j",
+    "yearsLong": "{years} jaar",
+    "hint": "slepen om te schuiven · rechts slepen om te draaien · scrollen om te zoomen · klik op een gebouw",
+    "comingSoon": "Aan deze laag wordt nog gebouwd."
+  },
+  "skills": {
+    "title": "Skills",
+    "intro": "Elke skill op mijn cv is een gebouw. Hoe hoger het gebouw, hoe meer jaren ik die skill in echte projecten heb gebruikt.",
+    "districts": "Wijken",
+    "details": "Details van {name}",
+    "experience": "ervaring",
+    "district": "wijk",
+    "usedAt": "gebruikt bij",
+    "listed": "genoemd",
+    "listedLong": "genoemd op cv",
+    "notTied": "Staat op mijn cv, maar hoort niet bij een specifieke rol, dus krijgt het de minimale hoogte."
+  }
+}

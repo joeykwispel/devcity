@@ -10,6 +10,8 @@ import type { SceneBuilding, SceneDistrict, Vec3 } from './types'
 // three.js only runs in the browser and is heavy, so it is split out and loaded client-side.
 const CityScene = dynamic(() => import('./city-scene'), { ssr: false, loading: SceneLoading })
 
+const NO_MARKERS: { id: string; position: Vec3; label: string }[] = []
+
 export interface LabelledDistrict extends SceneDistrict {
   label: string
 }
@@ -23,6 +25,8 @@ export function CityView({
   districts,
   buildings,
   tooltip,
+  markers = NO_MARKERS,
+  cameraFrom,
   canvasRef,
 }: {
   size: number
@@ -30,6 +34,9 @@ export function CityView({
   buildings: SceneBuilding[]
   /** Tooltip content for a building id, or null for no tooltip. */
   tooltip: (id: string) => { title: string; detail?: string } | null
+  /** Small text labels on the ground, e.g. years along the career boulevard. */
+  markers?: { id: string; position: Vec3; label: string }[]
+  cameraFrom?: Vec3
   canvasRef?: RefObject<HTMLCanvasElement | null>
 }) {
   const labelContainer = useRef<HTMLDivElement>(null)
@@ -42,10 +49,11 @@ export function CityView({
     const result: Record<string, Vec3> = {}
     // Front edge faces the default camera, so labels are not hidden behind buildings.
     for (const d of districts) result[`district:${d.id}`] = [d.x, 0.1, d.z + d.depth / 2]
+    for (const m of markers) result[`marker:${m.id}`] = m.position
     if (hoveredBuilding)
       result.tooltip = [hoveredBuilding.x, hoveredBuilding.height + 1.5, hoveredBuilding.z]
     return result
-  }, [districts, hoveredBuilding])
+  }, [districts, markers, hoveredBuilding])
 
   const labels: SceneLabel[] = [
     ...districts.map((d) => ({
@@ -55,6 +63,10 @@ export function CityView({
           {d.label}
         </span>
       ),
+    })),
+    ...markers.map((m) => ({
+      id: `marker:${m.id}`,
+      content: <span className="font-mono text-[0.7rem] text-muted">{m.label}</span>,
     })),
     {
       id: 'tooltip',
@@ -70,6 +82,7 @@ export function CityView({
         buildings={buildings}
         anchors={anchors}
         labelContainer={labelContainer}
+        cameraFrom={cameraFrom}
         canvasRef={canvasRef}
       />
       <SceneLabels labels={labels} containerRef={labelContainer} />

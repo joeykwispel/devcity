@@ -24,7 +24,9 @@
     "yearsShort": "{years}j",
     "yearsLong": "{years} jaar",
     "hint": "slepen om te schuiven · rechts slepen om te draaien · scrollen om te zoomen · klik op een gebouw",
-    "comingSoon": "Aan deze laag wordt nog gebouwd."
+    "comingSoon": "Aan deze laag wordt nog gebouwd.",
+    "durationYears": "{count, plural, one {# jr} other {# jr}}",
+    "durationMonths": "{count, plural, one {# mnd} other {# mnd}}"
   },
   "skills": {
     "title": "Skills",
@@ -37,5 +39,33 @@
     "listed": "genoemd",
     "listedLong": "genoemd op cv",
     "notTied": "Staat op mijn cv, maar hoort niet bij een specifieke rol, dus krijgt het de minimale hoogte."
+  },
+  "career": {
+    "title": "Loopbaan",
+    "intro": "Mijn loopbaan als boulevard. De tijd loopt van links naar rechts: werk aan de ene kant, opleidingen en cursussen aan de andere. Een gebouw is zo lang als de baan duurde en zo hoog als het aantal technieken dat ik er gebruikte.",
+    "legend": "Legenda",
+    "kinds": {
+      "work": "Werk",
+      "internship": "Stage",
+      "other": "Overig werk",
+      "education": "Opleiding",
+      "certification": "Cursus"
+    },
+    "sides": {
+      "work": "Werk",
+      "education": "Opleiding & cursussen"
+    },
+    "stats": {
+      "career": "loopbaan",
+      "companies": "bedrijven"
+    },
+    "details": "Details van {name}",
+    "period": "periode",
+    "duration": "duur",
+    "via": "via {company}",
+    "whatIDid": "wat ik deed",
+    "stack": "stack",
+    "courses": "cursussen",
+    "openInSkills": "Toon {skill} in de skills-stad"
   }
 }

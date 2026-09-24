@@ -1,9 +1,12 @@
-import { getTranslations } from 'next-intl/server'
-import { ComingSoon } from '@/components/coming-soon'
+import { monthIndexOf } from '@devcity/city-layout'
+import { CareerView } from '@/features/career/career-view'
 import { pageLocale } from '@/i18n/page-locale'
 
-export default async function Page({ params }: PageProps<'/[locale]/career'>) {
+export default async function CareerPage({ params }: PageProps<'/[locale]/career'>) {
   await pageLocale(params)
-  const t = await getTranslations('layers')
-  return <ComingSoon num="02" slug="career" title={t('career')} />
+  return (
+    <main className="relative h-dvh w-full overflow-hidden">
+      <CareerView buildMonth={monthIndexOf(new Date())} />
+    </main>
+  )
 }

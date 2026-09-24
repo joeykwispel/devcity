@@ -564,6 +564,36 @@
       "start": "2026-07",
       "end": null,
       "via": "Competa IT",
+      "title": {
+        "en": "Senior Front-end & Fullstack Developer",
+        "nl": "Senior Front-end & Fullstack Developer"
+      },
+      "summary": {
+        "en": "Contributes to PQNavigator, a static-analysis platform that scans source repositories to build a cryptographic inventory and assess post-quantum readiness. Work covers the user-facing application, end-to-end flows, server-side integration and the infrastructure that runs the platform.",
+        "nl": "Draagt bij aan PQNavigator, een static-analysis platform dat source repositories scant om een cryptografische inventaris op te bouwen en de gereedheid voor post-quantum cryptografie te beoordelen. Het werk omvat de gebruikersapplicatie, end-to-end flows, server-side integraties en de infrastructuur waarop het platform draait."
+      },
+      "bullets": {
+        "en": [
+          "Develops the front-end for reviewing cryptographic findings, risks and repository scan results.",
+          "Designs and implements end-to-end application flows across front-end, back-end and server-side interactions.",
+          "Integrates the application with APIs and back-end services that process and retrieve scan data.",
+          "Builds and maintains the server infrastructure with Proxmox and Kubernetes.",
+          "Manages the DevOps environment and deployment workflows, and improves the local development setup.",
+          "Translates complex cryptographic findings into clear, usable interfaces.",
+          "Works with stakeholders from Dutch public-sector organisations to align functionality with operational needs.",
+          "Contributes to delivery and validation for VNG and the ministries of BZK, BuZa and VWS, using the PQC migration handbook as assessment framework."
+        ],
+        "nl": [
+          "Ontwikkelt de front-end voor het beoordelen van cryptografische bevindingen, risico’s en scanresultaten.",
+          "Ontwerpt en implementeert end-to-end applicatieflows over front-end, back-end en server-side interacties.",
+          "Integreert de applicatie met API’s en back-end services voor het verwerken en ophalen van scanresultaten.",
+          "Bouwt en beheert de serverinfrastructuur met Proxmox en Kubernetes.",
+          "Beheert de DevOps-omgeving en deploymentprocessen en optimaliseert de lokale ontwikkelomgeving.",
+          "Vertaalt complexe cryptografische bevindingen naar duidelijke, gebruiksvriendelijke interfaces.",
+          "Werkt samen met stakeholders van Nederlandse overheidsorganisaties om functionaliteit af te stemmen op operationele behoeften.",
+          "Draagt bij aan oplevering en validatie voor VNG en de ministeries van BZK, BuZa en VWS, met het PQC-migratie handboek als beoordelingskader."
+        ]
+      },
       "stack": [
         "Next.js",
         "React",
@@ -613,6 +643,34 @@
       "end": "2026-07",
       "via": "Competa IT",
       "location": "'s-Hertogenbosch",
+      "title": {
+        "en": "Senior Front-end Developer",
+        "nl": "Senior Front-end Developer"
+      },
+      "summary": {
+        "en": "Responsible for the continued development of an Angular platform for property maintenance, where real estate professionals register and handle maintenance requests and damage reports. Works on the web and mobile applications within an Agile Scrum team.",
+        "nl": "Verantwoordelijk voor de doorontwikkeling van een Angular-platform voor vastgoedonderhoud, waarmee vastgoedprofessionals onderhouds- en schademeldingen registreren en afhandelen. Werkt aan de web- en mobiele applicatie binnen een Agile Scrum-team."
+      },
+      "bullets": {
+        "en": [
+          "Develops and enhances the front-end with Angular and TypeScript.",
+          "Implements new functionality for registering, managing and processing maintenance workflows.",
+          "Translates functional requirements and UX designs into scalable, maintainable solutions.",
+          "Safeguards quality, performance and maintainability of the front-end codebase.",
+          "Conducts code reviews focused on quality, consistency and best practices.",
+          "Contributes to technical architecture and identifies and reduces technical debt.",
+          "Sets up automated end-to-end tests with Playwright, using MCP for broader coverage and faster feedback loops."
+        ],
+        "nl": [
+          "Ontwikkelt en verbetert de front-end met Angular en TypeScript.",
+          "Realiseert nieuwe functionaliteiten voor het registreren, beheren en afhandelen van onderhoudsprocessen.",
+          "Vertaalt functionele wensen en UX-ontwerpen naar schaalbare, onderhoudbare oplossingen.",
+          "Bewaakt kwaliteit, performance en onderhoudbaarheid van de front-end codebase.",
+          "Voert code reviews uit met aandacht voor kwaliteit, consistentie en best practices.",
+          "Denkt mee over de technische architectuur en signaleert en vermindert technical debt.",
+          "Zet geautomatiseerde end-to-end tests op met Playwright, waarbij MCP wordt ingezet voor bredere coverage en snellere feedbackloops."
+        ]
+      },
       "stack": [
         "Angular",
         "Ionic Framework",
@@ -648,6 +706,32 @@
       "start": "2023-12",
       "end": "2025-06",
       "via": "Competa IT",
+      "title": {
+        "en": "Lead Software Developer",
+        "nl": "Lead Software Developer"
+      },
+      "summary": {
+        "en": "Led development of Code Tuner, a greenfield SaaS platform that helps organisations gain insight into and reduce technical debt across complex software landscapes. Provided technical leadership, covered front-end and back-end work, and acted as Scrum Master.",
+        "nl": "Leidde de ontwikkeling van Code Tuner, een greenfield SaaS-platform dat organisaties helpt technical debt binnen complexe softwarelandschappen inzichtelijk te maken en te verminderen. Gaf technisch leiding, deed front-end en back-end werk en was Scrum Master."
+      },
+      "bullets": {
+        "en": [
+          "Provided technical leadership and mentored the development team.",
+          "Designed and implemented scalable microservices and REST APIs.",
+          "Translated domain-specific requirements into future-proof technical solutions.",
+          "Contributed to the software architecture and technical design decisions.",
+          "Set up and improved testing and CI/CD processes.",
+          "Served as Scrum Master and worked closely with the Product Owner and domain experts."
+        ],
+        "nl": [
+          "Gaf technisch leiding aan en begeleidde het ontwikkelteam.",
+          "Ontwierp en realiseerde schaalbare microservices en REST API’s.",
+          "Vertaalde domeinspecifieke wensen naar toekomstbestendige technische oplossingen.",
+          "Dacht mee over de softwarearchitectuur en onderbouwde ontwerpkeuzes.",
+          "Zette test- en CI/CD-processen op en verbeterde ze.",
+          "Vervulde de rol van Scrum Master en werkte intensief samen met de Product Owner en domeinexperts."
+        ]
+      },
       "stack": [
         "React",
         "Next.js",
@@ -697,6 +781,28 @@
       "end": "2023-12",
       "via": "Competa IT",
       "location": "Purmerend",
+      "title": {
+        "en": "Software Developer",
+        "nl": "Software Developer"
+      },
+      "summary": {
+        "en": "Worked on MediumChat, a communication platform for healthcare professionals. Built new front-end functionality and contributed to the underlying APIs and integrations.",
+        "nl": "Werkte aan MediumChat, een communicatieplatform voor zorgprofessionals. Bouwde nieuwe front-end functionaliteiten en droeg bij aan de onderliggende API’s en koppelingen."
+      },
+      "bullets": {
+        "en": [
+          "Developed new front-end functionality.",
+          "Enhanced and integrated APIs and external integrations.",
+          "Contributed to the front-end architecture and improved codebase structure and maintainability.",
+          "Collaborated with developers and Product Owners in an Agile Scrum team."
+        ],
+        "nl": [
+          "Ontwikkelde nieuwe front-end functionaliteiten.",
+          "Ontwikkelde en integreerde API’s en externe koppelingen door.",
+          "Dacht mee over de front-end architectuur en verbeterde structuur en onderhoudbaarheid van de codebase.",
+          "Werkte samen met developers en Product Owners binnen een Agile Scrum-team."
+        ]
+      },
       "stack": [
         "PHP",
         "Zend",
@@ -723,6 +829,28 @@
       "end": "2023-05",
       "via": "Competa IT",
       "location": "Amsterdam",
+      "title": {
+        "en": "Front-end Developer",
+        "nl": "Front-end Developer"
+      },
+      "summary": {
+        "en": "Worked on a platform for managing and publishing content across social media channels, building reusable React components and templates used by multiple editorial teams.",
+        "nl": "Werkte aan een platform voor het beheren en publiceren van content voor socialmediakanalen en ontwikkelde herbruikbare React-componenten en templates voor verschillende redactieteams."
+      },
+      "bullets": {
+        "en": [
+          "Developed reusable React components and templates.",
+          "Translated UX designs into responsive front-end solutions.",
+          "Ensured quality and accessibility of the front-end.",
+          "Tested and optimised the application together with UX designers and developers."
+        ],
+        "nl": [
+          "Ontwikkelde herbruikbare React-componenten en templates.",
+          "Vertaalde UX-ontwerpen naar responsive front-end oplossingen.",
+          "Bewaakte kwaliteit en toegankelijkheid van de front-end.",
+          "Testte en optimaliseerde de applicatie samen met UX-designers en developers."
+        ]
+      },
       "stack": [
         "React",
         "Next.js",
@@ -751,6 +879,28 @@
       "end": "2022-08",
       "via": "Competa IT",
       "location": "Rotterdam",
+      "title": {
+        "en": "Front-end Developer",
+        "nl": "Front-end Developer"
+      },
+      "summary": {
+        "en": "Worked on the corporate website within HubSpot CMS, with a focus on pixel-perfect implementation, performance and user experience.",
+        "nl": "Werkte aan de corporate website binnen het HubSpot CMS, met de nadruk op pixel-perfecte implementatie, performance en gebruikerservaring."
+      },
+      "bullets": {
+        "en": [
+          "Developed new pages and components within HubSpot CMS.",
+          "Translated designs into responsive front-end solutions.",
+          "Optimised performance and SEO.",
+          "Collaborated with designers and marketers in an Agile Scrum team."
+        ],
+        "nl": [
+          "Ontwikkelde nieuwe pagina’s en componenten binnen HubSpot CMS.",
+          "Vertaalde ontwerpen naar responsive front-end oplossingen.",
+          "Optimaliseerde performance en SEO.",
+          "Werkte samen met designers en marketeers binnen een Agile Scrum-team."
+        ]
+      },
       "stack": ["JavaScript (ES6)", "HTML5", "CSS3", "HubSpot", "SEO", "Trello", "Agile", "Scrum"]
     },
     {
@@ -759,6 +909,18 @@
       "kind": "work",
       "start": "2021-08",
       "end": "2022-05",
+      "title": {
+        "en": "Front-end Developer",
+        "nl": "Front-end Developer"
+      },
+      "summary": {
+        "en": "Contributed to a healthcare platform that connects pharmacies with patients. Built accessible, user-friendly front-end functionality with Vue.js, with a strong emphasis on user experience.",
+        "nl": "Droeg bij aan een zorgplatform dat apotheken met patiënten verbindt. Realiseerde met Vue.js toegankelijke en gebruiksvriendelijke front-end functionaliteiten, met de nadruk op gebruikerservaring."
+      },
+      "bullets": {
+        "en": [],
+        "nl": []
+      },
       "stack": [
         "Vue.js",
         "JavaScript (ES6)",
@@ -777,6 +939,18 @@
       "start": "2021-02",
       "end": "2021-07",
       "location": "Rotterdam",
+      "title": {
+        "en": "Software Developer (internship)",
+        "nl": "Software Developer (stage)"
+      },
+      "summary": {
+        "en": "Worked on internal systems and applications with PHP and Laravel. Integrated the Google Maps API and built a scheduling system for selecting available time slots.",
+        "nl": "Werkte aan interne systemen en applicaties met PHP en Laravel. Integreerde de Google Maps API en ontwikkelde een planningssysteem voor het selecteren van tijdsloten."
+      },
+      "bullets": {
+        "en": [],
+        "nl": []
+      },
       "stack": ["PHP", "Laravel", "Twig", "SCSS", "CSS3", "Google Maps API", "Agile", "Scrum"]
     },
     {
@@ -786,7 +960,70 @@
       "start": "2019-08",
       "end": "2020-01",
       "location": "Den Haag",
+      "title": {
+        "en": "Software Developer (internship)",
+        "nl": "Software Developer (stage)"
+      },
+      "summary": {
+        "en": "Supported the development of the Competa IT website using WordPress, Twig and custom JavaScript.",
+        "nl": "Ondersteunde de ontwikkeling van de website van Competa IT met WordPress, Twig en maatwerk in JavaScript."
+      },
+      "bullets": {
+        "en": [],
+        "nl": []
+      },
       "stack": ["JavaScript (ES6)", "HTML5", "SCSS", "CSS3", "Twig", "WordPress"]
+    }
+  ],
+  "education": [
+    {
+      "id": "mbo",
+      "kind": "education",
+      "institution": "mboRijnland",
+      "startYear": 2018,
+      "endYear": 2021,
+      "title": {
+        "en": "Applicatie- en Media Ontwikkelaar",
+        "nl": "Applicatie- en Media Ontwikkelaar"
+      },
+      "detail": {
+        "en": "Vocational degree (MBO)",
+        "nl": "MBO-opleiding"
+      }
+    },
+    {
+      "id": "training-2024",
+      "kind": "certification",
+      "startYear": 2024,
+      "endYear": 2024,
+      "title": {
+        "en": "Additional training",
+        "nl": "Aanvullende cursussen"
+      },
+      "courses": ["C# for .NET Developers", "Python for Everybody", "Blockchain", "Microservices"]
+    },
+    {
+      "id": "training-2023",
+      "kind": "certification",
+      "institution": "University of Salford, UK",
+      "startYear": 2023,
+      "endYear": 2023,
+      "title": {
+        "en": "Additional training",
+        "nl": "Aanvullende cursussen"
+      },
+      "courses": ["Lexers & Parsers (Computer Science)"]
+    },
+    {
+      "id": "training-2022",
+      "kind": "certification",
+      "startYear": 2022,
+      "endYear": 2022,
+      "title": {
+        "en": "Additional training",
+        "nl": "Aanvullende cursussen"
+      },
+      "courses": ["Scrum/Agile", "Advanced TypeScript"]
     }
   ]
 }

@@ -24,7 +24,9 @@
     "yearsShort": "{years}y",
     "yearsLong": "{years} {count, plural, one {year} other {years}}",
     "hint": "drag to pan · right-drag to rotate · scroll to zoom · click a building",
-    "comingSoon": "This layer is under construction."
+    "comingSoon": "This layer is under construction.",
+    "durationYears": "{count, plural, one {# yr} other {# yrs}}",
+    "durationMonths": "{count, plural, one {# mo} other {# mos}}"
   },
   "skills": {
     "title": "Skills",
@@ -37,5 +39,33 @@
     "listed": "listed",
     "listedLong": "listed on CV",
     "notTied": "On my CV, but not tied to a specific role, so it gets the minimum height."
+  },
+  "career": {
+    "title": "Career",
+    "intro": "My career as a boulevard. Time runs left to right: work on one side, education and training on the other. A building is as long as the job lasted and as tall as the number of technologies I used there.",
+    "legend": "Legend",
+    "kinds": {
+      "work": "Work",
+      "internship": "Internship",
+      "other": "Other job",
+      "education": "Education",
+      "certification": "Training"
+    },
+    "sides": {
+      "work": "Work",
+      "education": "Education & training"
+    },
+    "stats": {
+      "career": "career",
+      "companies": "companies"
+    },
+    "details": "{name} details",
+    "period": "period",
+    "duration": "duration",
+    "via": "via {company}",
+    "whatIDid": "what I did",
+    "stack": "stack",
+    "courses": "courses",
+    "openInSkills": "Show {skill} in the skills city"
   }
 }

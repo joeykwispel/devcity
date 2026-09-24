@@ -1,7 +1,8 @@
 'use client'
 
 import { MapControls } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
+import { useEffect } from 'react'
 import { useCityStore } from '@/lib/city-store'
 import { useTheme, type Theme } from '@/lib/theme'
 import { InstancedBuildings } from './instanced-buildings'
@@ -25,6 +26,22 @@ function DistrictPlate({ district, opacity }: { district: SceneDistrict; opacity
   )
 }
 
+/**
+ * On wide screens the intro card covers the left ~400px. Shifting the projection centre moves the
+ * city into the free area without changing the camera or the controls.
+ */
+function ViewOffset() {
+  const camera = useThree((s) => s.camera)
+  const width = useThree((s) => s.size.width)
+  const height = useThree((s) => s.size.height)
+  useEffect(() => {
+    if (!('setViewOffset' in camera)) return
+    if (width >= 1024) camera.setViewOffset(width, height, -190, 0, width, height)
+    else camera.clearViewOffset()
+  }, [camera, width, height])
+  return null
+}
+
 /** The shared 3D city: lights, ground, districts, instanced buildings, labels and controls. */
 export default function CityScene({
   size,
@@ -32,6 +49,7 @@ export default function CityScene({
   buildings,
   anchors,
   labelContainer,
+  cameraFrom = [110, 100, 110],
   canvasRef,
 }: CitySceneProps) {
   const theme = useTheme()
@@ -52,7 +70,7 @@ export default function CityScene({
       // preserveDrawingBuffer lets the PNG export read the canvas after a frame is drawn.
       gl={{ preserveDrawingBuffer: true }}
       camera={{
-        position: [110 * distance, 100 * distance, 110 * distance],
+        position: [cameraFrom[0] * distance, cameraFrom[1] * distance, cameraFrom[2] * distance],
         fov: 35,
         near: 1,
         far: 2000 * k,
@@ -93,6 +111,7 @@ export default function CityScene({
       <InstancedBuildings buildings={buildings} ground={colors.ground} />
 
       <LabelProjector container={labelContainer} anchors={anchors} />
+      <ViewOffset />
 
       <MapControls
         makeDefault

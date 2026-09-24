@@ -67,5 +67,37 @@
     "stack": "stack",
     "courses": "courses",
     "openInSkills": "Show {skill} in the skills city"
+  },
+  "repos": {
+    "title": "My repos",
+    "intro": "Each of my public repositories is a district and each of its languages a building. Footprint is the share of the code, height grows with the number of commits. Smog hangs over repos nobody has pushed to in a while.",
+    "stats": {
+      "repos": "repos",
+      "commits": "commits",
+      "languages": "languages",
+      "pullRequests": "pull requests"
+    },
+    "contributions": "Contributions",
+    "fork": "fork",
+    "archived": "archived",
+    "details": "{name} details",
+    "language": "language",
+    "share": "share of code",
+    "stars": "stars",
+    "forks": "forks",
+    "lastPush": "last push",
+    "openOnGitHub": "Open on GitHub",
+    "website": "Website",
+    "languagesHeading": "languages",
+    "topics": "topics",
+    "pullRequestsHeading": "my pull requests",
+    "prState": {
+      "open": "open",
+      "merged": "merged",
+      "closed": "closed"
+    },
+    "exploreRepo": "Explore this repo file by file",
+    "generated": "Data from GitHub, {date}",
+    "empty": "No public repositories found."
   }
 }

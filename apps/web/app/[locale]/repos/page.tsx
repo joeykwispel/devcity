@@ -1,9 +1,12 @@
-import { getTranslations } from 'next-intl/server'
-import { ComingSoon } from '@/components/coming-soon'
+import { ReposView } from '@/features/repos/repos-view'
 import { pageLocale } from '@/i18n/page-locale'
+import { today } from '@/lib/time'
 
-export default async function Page({ params }: PageProps<'/[locale]/repos'>) {
+export default async function ReposPage({ params }: PageProps<'/[locale]/repos'>) {
   await pageLocale(params)
-  const t = await getTranslations('layers')
-  return <ComingSoon num="03" slug="repos" title={t('repos')} />
+  return (
+    <main className="relative h-dvh w-full overflow-hidden">
+      <ReposView buildDay={today()} />
+    </main>
+  )
 }

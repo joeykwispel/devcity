@@ -1,6 +1,7 @@
 {
   "name": "devcity",
   "private": true,
+  "type": "module",
   "description": "The CV and GitHub activity of Joey Oosenbrug, rendered as an explorable 3D city.",
   "author": "Joey Oosenbrug (https://github.com/joeykwispel)",
   "license": "MIT",
@@ -20,7 +21,8 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "data": "node --env-file-if-exists=apps/web/.env.local scripts/build-data.ts"
   },
   "devDependencies": {
     "prettier": "^3.9.9",

@@ -67,5 +67,37 @@
     "stack": "stack",
     "courses": "cursussen",
     "openInSkills": "Toon {skill} in de skills-stad"
+  },
+  "repos": {
+    "title": "Mijn repo's",
+    "intro": "Elke publieke repository van mij is een wijk en elke taal daarin een gebouw. Het grondvlak is het aandeel in de code, de hoogte groeit met het aantal commits. Boven repo's waar al lang niemand aan werkt hangt smog.",
+    "stats": {
+      "repos": "repo's",
+      "commits": "commits",
+      "languages": "talen",
+      "pullRequests": "pull requests"
+    },
+    "contributions": "Bijdragen",
+    "fork": "fork",
+    "archived": "gearchiveerd",
+    "details": "Details van {name}",
+    "language": "taal",
+    "share": "aandeel in code",
+    "stars": "sterren",
+    "forks": "forks",
+    "lastPush": "laatste push",
+    "openOnGitHub": "Openen op GitHub",
+    "website": "Website",
+    "languagesHeading": "talen",
+    "topics": "onderwerpen",
+    "pullRequestsHeading": "mijn pull requests",
+    "prState": {
+      "open": "open",
+      "merged": "gemerged",
+      "closed": "gesloten"
+    },
+    "exploreRepo": "Bekijk deze repo bestand voor bestand",
+    "generated": "Gegevens van GitHub, {date}",
+    "empty": "Geen publieke repositories gevonden."
   }
 }

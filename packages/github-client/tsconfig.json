@@ -1,5 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": { "noEmit": true },
+  // fetch, Headers and URL: the client runs in browsers and in Node 24, which share these types.
+  "compilerOptions": { "lib": ["ES2023", "DOM"] },
   "include": ["src"]
 }

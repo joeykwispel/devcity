@@ -2,6 +2,7 @@
 
 import { monthIndexOf, type MonthIndex } from '@devcity/city-layout'
 import { useSyncExternalStore } from 'react'
+import { today } from './time'
 
 const subscribe = () => () => {}
 
@@ -16,4 +17,9 @@ export function useCurrentMonth(buildMonth: MonthIndex): MonthIndex {
     () => monthIndexOf(new Date()),
     () => buildMonth,
   )
+}
+
+/** Like useCurrentMonth, for code that needs a timestamp (e.g. how stale a repository is). */
+export function useToday(buildDay: number): number {
+  return useSyncExternalStore(subscribe, today, () => buildDay)
 }

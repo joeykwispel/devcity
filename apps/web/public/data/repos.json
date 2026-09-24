@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-09-24T22:07:38.871Z",
+  "user": "joeykwispel",
+  "repos": [
+    {
+      "name": "Portfolio",
+      "fullName": "joeykwispel/Portfolio",
+      "description": "My personal portfolio, built with Svelte. Live at joeyoosenbrug.nl",
+      "url": "https://github.com/joeykwispel/Portfolio",
+      "homepage": "http://joeyoosenbrug.nl/",
+      "language": "Svelte",
+      "languages": {
+        "Svelte": 169202,
+        "TypeScript": 109928,
+        "CSS": 9667,
+        "HTML": 831,
+        "JavaScript": 531
+      },
+      "stars": 0,
+      "forks": 0,
+      "openIssues": 1,
+      "sizeKb": 987,
+      "commits": 16,
+      "createdAt": "2022-10-24T08:43:55Z",
+      "pushedAt": "2026-09-24T21:31:54Z",
+      "topics": ["portfolio"],
+      "fork": false,
+      "archived": false,
+      "license": "MIT"
+    },
+    {
+      "name": "devcity",
+      "fullName": "joeykwispel/devcity",
+      "description": "Explore code as a 3D city: my skills, my career, my repos, or any public GitHub repo. React + Three.js. NL/EN.",
+      "url": "https://github.com/joeykwispel/devcity",
+      "homepage": null,
+      "language": "TypeScript",
+      "languages": {
+        "TypeScript": 2754,
+        "JavaScript": 316,
+        "CSS": 155
+      },
+      "stars": 0,
+      "forks": 0,
+      "openIssues": 0,
+      "sizeKb": 61,
+      "commits": 3,
+      "createdAt": "2026-09-24T20:34:45Z",
+      "pushedAt": "2026-09-24T20:56:35Z",
+      "topics": [],
+      "fork": false,
+      "archived": false,
+      "license": "MIT"
+    },
+    {
+      "name": "aframe",
+      "fullName": "joeykwispel/aframe",
+      "description": ":a: Web framework for building virtual reality experiences.",
+      "url": "https://github.com/joeykwispel/aframe",
+      "homepage": "https://aframe.io/",
+      "language": null,
+      "languages": {},
+      "stars": 1,
+      "forks": 0,
+      "openIssues": 0,
+      "sizeKb": 640781,
+      "commits": 0,
+      "createdAt": "2022-11-04T15:07:21Z",
+      "pushedAt": "2022-10-25T23:58:58Z",
+      "topics": [],
+      "fork": true,
+      "archived": false,
+      "license": "MIT"
+    }
+  ],
+  "contributions": [
+    {
+      "fullName": "Amsterdam/brp-amsterdam-api",
+      "url": "https://github.com/Amsterdam/brp-amsterdam-api",
+      "description": "Authorization proxy to connect to the RvIG BRP API.",
+      "language": "Python",
+      "stars": 1,
+      "pullRequests": [
+        {
+          "number": 195,
+          "title": "Add AES-256-GCM BSN encryption and opt-in post-quantum TLS to RvIG",
+          "url": "https://github.com/Amsterdam/brp-amsterdam-api/pull/195",
+          "state": "open",
+          "createdAt": "2026-09-08T13:44:32Z"
+        }
+      ]
+    },
+    {
+      "fullName": "fundament-oss/fundament",
+      "url": "https://github.com/fundament-oss/fundament",
+      "description": null,
+      "language": "Go",
+      "stars": 15,
+      "pullRequests": [
+        {
+          "number": 424,
+          "title": "fix(openfsc-operator): shorten group CA duration to 3 years",
+          "url": "https://github.com/fundament-oss/fundament/pull/424",
+          "state": "open",
+          "createdAt": "2026-09-07T10:25:12Z"
+        }
+      ]
+    },
+    {
+      "fullName": "minvws/nl-mgo-dvp-proxy",
+      "url": "https://github.com/minvws/nl-mgo-dvp-proxy",
+      "description": "Repo nl-mgo-dvp-proxy for minvws",
+      "language": "Python",
+      "stars": 0,
+      "pullRequests": [
+        {
+          "number": 8,
+          "title": "feat(oidc): add crypto-agility + ML-DSA-65 support for client-assertion JWT",
+          "url": "https://github.com/minvws/nl-mgo-dvp-proxy/pull/8",
+          "state": "open",
+          "createdAt": "2026-09-03T12:54:10Z"
+        }
+      ]
+    },
+    {
+      "fullName": "superbrave/frontend-search-component",
+      "url": "https://github.com/superbrave/frontend-search-component",
+      "description": null,
+      "language": "Vue",
+      "stars": 1,
+      "pullRequests": [
+        {
+          "number": 48,
+          "title": "DV-2331 Vertalingen toevoegen in het search component",
+          "url": "https://github.com/superbrave/frontend-search-component/pull/48",
+          "state": "closed",
+          "createdAt": "2022-04-07T09:52:05Z"
+        }
+      ]
+    }
+  ]
+}

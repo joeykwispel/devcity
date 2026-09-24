@@ -25,7 +25,7 @@ export function LanguageSwitcher() {
   return (
     <button
       type="button"
-      className="chip font-bold uppercase"
+      className="chip panel font-bold uppercase"
       onClick={onClick}
       lang={next}
       aria-label={t('switchTo')}

@@ -36,12 +36,10 @@ export function SiteHeader() {
                 <li key={layer.id}>
                   <Link
                     href={layer.href}
-                    className="chip whitespace-nowrap no-underline"
+                    className="chip panel whitespace-nowrap no-underline"
                     aria-current={active ? 'page' : undefined}
                   >
-                    <span className="text-accent-text opacity-80">
-                      {String(i + 1).padStart(2, '0')}.
-                    </span>
+                    <span className="text-accent-text">{String(i + 1).padStart(2, '0')}.</span>
                     {/* On phones only the active layer is spelled out; the rest are numbers. */}
                     <span className={active ? undefined : 'sr-only sm:not-sr-only'}>
                       {t(`layers.${layer.label}`)}

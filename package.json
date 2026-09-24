@@ -15,7 +15,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --filter=@devcity/web",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
@@ -23,7 +23,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "data": "node --env-file-if-exists=apps/web/.env.local scripts/build-data.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "dev:proxy": "pnpm --filter @devcity/proxy dev"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

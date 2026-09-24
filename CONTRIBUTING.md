@@ -1,7 +1,7 @@
 # Contributing
 
 1. Branch off `main` (`feat/...`, `fix/...`).
-2. Run `pnpm turbo run lint typecheck test build` and `pnpm format` before pushing.
+2. Run `pnpm format`, `pnpm turbo run lint typecheck test build build-storybook` and `pnpm test:e2e` before pushing.
 3. Open a PR; CI must pass. PRs are squash-merged.
 
 ## Conventions

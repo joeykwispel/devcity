@@ -11,7 +11,7 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="chip w-9 justify-center px-0"
+      className="chip panel w-9 justify-center px-0"
       onClick={() => setTheme(next)}
       aria-label={label}
       title={label}

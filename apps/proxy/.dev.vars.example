@@ -1,0 +1,2 @@
+# Copy to .dev.vars for `pnpm --filter @devcity/proxy dev`. Git-ignored; never commit real values.
+GITHUB_TOKEN=

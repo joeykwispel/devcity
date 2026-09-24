@@ -21,6 +21,21 @@ export function useFormatters() {
       const [y, m] = value.split('-').map(Number)
       return format.dateTime(new Date(y!, m! - 1, 1), { month: 'short', year: 'numeric' })
     },
+    /** Bytes as B, kB or MB in the current locale. */
+    bytes: (bytes: number) => {
+      const [value, unit] =
+        bytes >= 1e6
+          ? [bytes / 1e6, 'megabyte']
+          : bytes >= 1e3
+            ? [bytes / 1e3, 'kilobyte']
+            : [bytes, 'byte']
+      return format.number(value, {
+        style: 'unit',
+        unit,
+        unitDisplay: 'short',
+        maximumFractionDigits: 1,
+      })
+    },
     /** Months as "1 yr 3 mos" / "1 jr 3 mnd". */
     duration: (months: number) => {
       const y = Math.floor(months / 12)

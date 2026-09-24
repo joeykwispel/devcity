@@ -20,6 +20,8 @@ export interface SceneBuilding {
 
 export interface SceneDistrict {
   id: string
+  /** Lift above the ground, so nested plates (folders in folders) do not z-fight. */
+  elevation?: number
   x: number
   z: number
   width: number

@@ -99,5 +99,38 @@
     "exploreRepo": "Explore this repo file by file",
     "generated": "Data from GitHub, {date}",
     "empty": "No public repositories found."
+  },
+  "anyRepo": {
+    "title": "Any repo",
+    "intro": "Type any public GitHub repository and walk through it. Top-level folders are districts, nested folders are blocks, files are buildings: the bigger the file, the taller the building.",
+    "label": "GitHub repository",
+    "placeholder": "owner/repo or GitHub URL",
+    "submit": "Build city",
+    "invalid": "Use owner/repo, for example facebook/react.",
+    "examples": "Try",
+    "loadingRepo": "Looking up {repo}...",
+    "loadingTree": "Fetching the file tree...",
+    "notFound": "{repo} does not exist or is private.",
+    "failed": "GitHub answered with an error: {message}",
+    "rateLimited": "GitHub rate limit reached. Try again in {minutes, plural, one {# minute} other {# minutes}}, or revisit a repo you opened before: those come from the cache.",
+    "rateLimit": "{remaining} of {limit} GitHub requests left",
+    "resetsIn": "resets in {minutes, plural, one {# minute} other {# minutes}}",
+    "viaProxy": "via proxy",
+    "cached": "cached",
+    "stats": {
+      "files": "files",
+      "size": "size",
+      "stars": "stars",
+      "branch": "branch"
+    },
+    "truncated": "This repository is very large. The city shows the part GitHub returned within the request budget.",
+    "omitted": "{count, plural, one {# small file is} other {# small files are}} left out to keep the city fast.",
+    "details": "{name} details",
+    "path": "path",
+    "language": "language",
+    "size": "size",
+    "openFile": "Open file on GitHub",
+    "openRepo": "Open on GitHub",
+    "empty": "Pick a repository to build its city."
   }
 }

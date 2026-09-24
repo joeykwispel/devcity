@@ -19,7 +19,11 @@ const portrait = window.innerWidth < window.innerHeight ? 1.9 : 1
 
 function DistrictPlate({ district, opacity }: { district: SceneDistrict; opacity: number }) {
   return (
-    <mesh position={[district.x, 0.02, district.z]} rotation-x={-Math.PI / 2} receiveShadow>
+    <mesh
+      position={[district.x, 0.02 + (district.elevation ?? 0), district.z]}
+      rotation-x={-Math.PI / 2}
+      receiveShadow
+    >
       <planeGeometry args={[district.width, district.depth]} />
       <meshStandardMaterial color={district.color} transparent opacity={opacity} />
     </mesh>

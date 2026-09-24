@@ -13,7 +13,8 @@ const CityScene = dynamic(() => import('./city-scene'), { ssr: false, loading: S
 const NO_MARKERS: { id: string; position: Vec3; label: string }[] = []
 
 export interface LabelledDistrict extends SceneDistrict {
-  label: string
+  /** Districts without a label (e.g. nested folders) are drawn but not named. */
+  label?: string
 }
 
 /**
@@ -48,7 +49,8 @@ export function CityView({
   const anchors = useMemo(() => {
     const result: Record<string, Vec3> = {}
     // Front edge faces the default camera, so labels are not hidden behind buildings.
-    for (const d of districts) result[`district:${d.id}`] = [d.x, 0.1, d.z + d.depth / 2]
+    for (const d of districts)
+      if (d.label) result[`district:${d.id}`] = [d.x, 0.1, d.z + d.depth / 2]
     for (const m of markers) result[`marker:${m.id}`] = m.position
     if (hoveredBuilding)
       result.tooltip = [hoveredBuilding.x, hoveredBuilding.height + 1.5, hoveredBuilding.z]
@@ -56,14 +58,16 @@ export function CityView({
   }, [districts, markers, hoveredBuilding])
 
   const labels: SceneLabel[] = [
-    ...districts.map((d) => ({
-      id: `district:${d.id}`,
-      content: (
-        <span className="tag panel whitespace-nowrap" style={{ color: d.color }}>
-          {d.label}
-        </span>
-      ),
-    })),
+    ...districts
+      .filter((d) => d.label)
+      .map((d) => ({
+        id: `district:${d.id}`,
+        content: (
+          <span className="tag panel whitespace-nowrap" style={{ color: d.color }}>
+            {d.label}
+          </span>
+        ),
+      })),
     ...markers.map((m) => ({
       id: `marker:${m.id}`,
       content: <span className="font-mono text-[0.7rem] text-muted">{m.label}</span>,

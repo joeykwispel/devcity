@@ -99,5 +99,38 @@
     "exploreRepo": "Bekijk deze repo bestand voor bestand",
     "generated": "Gegevens van GitHub, {date}",
     "empty": "Geen publieke repositories gevonden."
+  },
+  "anyRepo": {
+    "title": "Elke repo",
+    "intro": "Typ een publieke GitHub-repository en loop erdoorheen. Mappen in de root zijn wijken, submappen zijn blokken en bestanden zijn gebouwen: hoe groter het bestand, hoe hoger het gebouw.",
+    "label": "GitHub-repository",
+    "placeholder": "eigenaar/repo of GitHub-URL",
+    "submit": "Bouw stad",
+    "invalid": "Gebruik eigenaar/repo, bijvoorbeeld facebook/react.",
+    "examples": "Probeer",
+    "loadingRepo": "{repo} opzoeken...",
+    "loadingTree": "Bestandsboom ophalen...",
+    "notFound": "{repo} bestaat niet of is privé.",
+    "failed": "GitHub gaf een fout: {message}",
+    "rateLimited": "De GitHub-limiet is bereikt. Probeer het over {minutes, plural, one {# minuut} other {# minuten}} opnieuw, of open een repo die je eerder hebt bekeken: die komen uit de cache.",
+    "rateLimit": "Nog {remaining} van {limit} GitHub-verzoeken",
+    "resetsIn": "reset over {minutes, plural, one {# minuut} other {# minuten}}",
+    "viaProxy": "via proxy",
+    "cached": "uit cache",
+    "stats": {
+      "files": "bestanden",
+      "size": "grootte",
+      "stars": "sterren",
+      "branch": "branch"
+    },
+    "truncated": "Deze repository is erg groot. De stad toont het deel dat GitHub binnen het verzoekbudget teruggaf.",
+    "omitted": "{count, plural, one {# klein bestand is} other {# kleine bestanden zijn}} weggelaten om de stad snel te houden.",
+    "details": "Details van {name}",
+    "path": "pad",
+    "language": "taal",
+    "size": "grootte",
+    "openFile": "Bestand openen op GitHub",
+    "openRepo": "Openen op GitHub",
+    "empty": "Kies een repository om de stad te bouwen."
   }
 }

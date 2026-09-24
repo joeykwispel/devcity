@@ -43,7 +43,7 @@ const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v
 export function tone(color: string, theme: Theme, muted = false): string {
   const [h, s, l] = toHsl(color)
   if (muted) return buildingCss(h, theme, true)
-  const saturation = clamp(s, 0.15, theme === 'dark' ? 0.5 : 0.55)
-  const lightness = theme === 'dark' ? clamp(l, 0.52, 0.68) : clamp(l, 0.42, 0.56)
+  const saturation = clamp(s, 0.15, theme === 'dark' ? 0.42 : 0.5)
+  const lightness = theme === 'dark' ? clamp(l, 0.56, 0.7) : clamp(l, 0.44, 0.58)
   return `hsl(${Math.round(h)}, ${Math.round(saturation * 100)}%, ${Math.round(lightness * 100)}%)`
 }

@@ -1,9 +1,15 @@
-import { getTranslations } from 'next-intl/server'
-import { ComingSoon } from '@/components/coming-soon'
+import { Suspense } from 'react'
+import { AnyRepoView } from '@/features/any-repo/any-repo-view'
 import { pageLocale } from '@/i18n/page-locale'
 
-export default async function Page({ params }: PageProps<'/[locale]/any-repo'>) {
+export default async function AnyRepoPage({ params }: PageProps<'/[locale]/any-repo'>) {
   await pageLocale(params)
-  const t = await getTranslations('layers')
-  return <ComingSoon num="04" slug="any-repo" title={t('anyRepo')} />
+  return (
+    <main className="relative h-dvh w-full overflow-hidden">
+      {/* The repo comes from ?repo=, which only exists in the browser on a static export. */}
+      <Suspense>
+        <AnyRepoView />
+      </Suspense>
+    </main>
+  )
 }

@@ -1,6 +1,7 @@
 {
   "name": "devcity",
   "private": true,
+  "type": "module",
   "description": "The CV and GitHub activity of Joey Oosenbrug, rendered as an explorable 3D city.",
   "author": "Joey Oosenbrug (https://github.com/joeykwispel)",
   "license": "MIT",
@@ -14,15 +15,20 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --filter=@devcity/web",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "data": "node --env-file-if-exists=apps/web/.env.local scripts/build-data.ts",
+    "test:e2e": "playwright test",
+    "dev:proxy": "pnpm --filter @devcity/proxy dev"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
     "prettier": "^3.9.9",
     "turbo": "^2.11.3",
     "typescript": "~5.9.3"

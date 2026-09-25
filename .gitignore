@@ -23,3 +23,7 @@ storybook-static/
 .vercel
 .DS_Store
 *.log
+
+# Cloudflare Workers
+.dev.vars
+.wrangler/

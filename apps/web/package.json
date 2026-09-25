@@ -9,21 +9,34 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static"
   },
   "dependencies": {
     "@devcity/city-layout": "workspace:*",
+    "@devcity/github-client": "workspace:*",
     "@react-three/drei": "^10.7.8",
     "@react-three/fiber": "^9.8.0",
+    "@tanstack/query-async-storage-persister": "^5.103.2",
+    "@tanstack/react-query": "^5.103.2",
+    "@tanstack/react-query-persist-client": "^5.103.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "next": "^16.3.6",
+    "next-intl": "^4.14.6",
+    "radix-ui": "^1.6.7",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
+    "tailwind-merge": "^3.7.0",
     "three": "~0.186.0",
     "zod": "^4.6.5",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/nextjs-vite": "^10.6.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^24.13.6",
     "@types/react": "^19.3.0",
@@ -31,8 +44,10 @@
     "@types/three": "^0.186.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.3.6",
+    "storybook": "^10.6.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~5.9.3",
+    "vite": "^8.3.0",
     "vitest": "^5.0.1"
   }
 }

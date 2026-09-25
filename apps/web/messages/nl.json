@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "title": "DevCity · Joey Oosenbrug",
+    "description": "Het cv en de GitHub-activiteit van Joey Oosenbrug, als een 3D-stad om doorheen te vliegen.",
+    "layerTitle": "{layer} · DevCity · Joey Oosenbrug"
+  },
+  "header": {
+    "portfolio": "{name}, portfolio",
+    "layers": "Stadslagen",
+    "theme": "Wissel naar {theme, select, light {licht} other {donker}} thema",
+    "language": "Taal"
+  },
+  "layers": {
+    "skills": "Skills",
+    "career": "Loopbaan",
+    "repos": "Mijn repo's",
+    "anyRepo": "Elke repo"
+  },
+  "common": {
+    "loading": "stad wordt gebouwd...",
+    "close": "Details sluiten",
+    "now": "nu",
+    "years": "{years} jr",
+    "yearsShort": "{years}j",
+    "yearsLong": "{years} jaar",
+    "hint": "slepen om te schuiven · rechts slepen om te draaien · scrollen om te zoomen · klik op een gebouw",
+    "comingSoon": "Aan deze laag wordt nog gebouwd.",
+    "durationYears": "{count, plural, one {# jr} other {# jr}}",
+    "durationMonths": "{count, plural, one {# mnd} other {# mnd}}"
+  },
+  "skills": {
+    "title": "Skills",
+    "intro": "Elke skill op mijn cv is een gebouw. Hoe hoger het gebouw, hoe meer jaren ik die skill in echte projecten heb gebruikt.",
+    "districts": "Wijken",
+    "details": "Details van {name}",
+    "experience": "ervaring",
+    "district": "wijk",
+    "usedAt": "gebruikt bij",
+    "listed": "genoemd",
+    "listedLong": "genoemd op cv",
+    "notTied": "Staat op mijn cv, maar hoort niet bij een specifieke rol, dus krijgt het de minimale hoogte."
+  },
+  "career": {
+    "title": "Loopbaan",
+    "intro": "Mijn loopbaan als boulevard. De tijd loopt van links naar rechts: werk aan de ene kant, opleidingen en cursussen aan de andere. Een gebouw is zo lang als de baan duurde en zo hoog als het aantal technieken dat ik er gebruikte.",
+    "legend": "Legenda",
+    "kinds": {
+      "work": "Werk",
+      "internship": "Stage",
+      "other": "Overig werk",
+      "education": "Opleiding",
+      "certification": "Cursus"
+    },
+    "sides": {
+      "work": "Werk",
+      "education": "Opleiding & cursussen"
+    },
+    "stats": {
+      "career": "loopbaan",
+      "companies": "bedrijven"
+    },
+    "details": "Details van {name}",
+    "period": "periode",
+    "duration": "duur",
+    "via": "via {company}",
+    "whatIDid": "wat ik deed",
+    "stack": "stack",
+    "courses": "cursussen",
+    "openInSkills": "Toon {skill} in de skills-stad"
+  },
+  "repos": {
+    "title": "Mijn repo's",
+    "intro": "Elke publieke repository van mij is een wijk en elke taal daarin een gebouw. Het grondvlak is het aandeel in de code, de hoogte groeit met het aantal commits. Boven repo's waar al lang niemand aan werkt hangt smog.",
+    "stats": {
+      "repos": "repo's",
+      "commits": "commits",
+      "languages": "talen",
+      "pullRequests": "pull requests"
+    },
+    "contributions": "Bijdragen",
+    "fork": "fork",
+    "archived": "gearchiveerd",
+    "details": "Details van {name}",
+    "language": "taal",
+    "share": "aandeel in code",
+    "stars": "sterren",
+    "forks": "forks",
+    "lastPush": "laatste push",
+    "openOnGitHub": "Openen op GitHub",
+    "website": "Website",
+    "languagesHeading": "talen",
+    "topics": "onderwerpen",
+    "pullRequestsHeading": "mijn pull requests",
+    "prState": {
+      "open": "open",
+      "merged": "gemerged",
+      "closed": "gesloten"
+    },
+    "exploreRepo": "Bekijk deze repo bestand voor bestand",
+    "generated": "Gegevens van GitHub, {date}",
+    "empty": "Geen publieke repositories gevonden."
+  },
+  "anyRepo": {
+    "title": "Elke repo",
+    "intro": "Typ een publieke GitHub-repository en loop erdoorheen. Mappen in de root zijn wijken, submappen zijn blokken en bestanden zijn gebouwen: hoe groter het bestand, hoe hoger het gebouw.",
+    "label": "GitHub-repository",
+    "placeholder": "eigenaar/repo of GitHub-URL",
+    "submit": "Bouw stad",
+    "invalid": "Gebruik eigenaar/repo, bijvoorbeeld facebook/react.",
+    "examples": "Probeer",
+    "loadingRepo": "{repo} opzoeken...",
+    "loadingTree": "Bestandsboom ophalen...",
+    "notFound": "{repo} bestaat niet of is privé.",
+    "failed": "GitHub gaf een fout: {message}",
+    "rateLimited": "De GitHub-limiet is bereikt. Probeer het over {minutes, plural, one {# minuut} other {# minuten}} opnieuw, of open een repo die je eerder hebt bekeken: die komen uit de cache.",
+    "rateLimit": "Nog {remaining} van {limit} GitHub-verzoeken",
+    "resetsIn": "reset over {minutes, plural, one {# minuut} other {# minuten}}",
+    "viaProxy": "via proxy",
+    "cached": "uit cache",
+    "stats": {
+      "files": "bestanden",
+      "size": "grootte",
+      "stars": "sterren",
+      "branch": "branch"
+    },
+    "truncated": "Deze repository is erg groot. De stad toont het deel dat GitHub binnen het verzoekbudget teruggaf.",
+    "omitted": "{count, plural, one {# klein bestand is} other {# kleine bestanden zijn}} weggelaten om de stad snel te houden.",
+    "details": "Details van {name}",
+    "path": "pad",
+    "language": "taal",
+    "size": "grootte",
+    "openFile": "Bestand openen op GitHub",
+    "openRepo": "Openen op GitHub",
+    "empty": "Kies een repository om de stad te bouwen."
+  },
+  "list": {
+    "filter": "Filter op naam",
+    "noMatches": "Niets gevonden met dit filter.",
+    "more": "Nog {count, plural, one {# item} other {# items}}; gebruik het filter om ze te vinden."
+  },
+  "toolbar": {
+    "view": "Weergave",
+    "city": "3D-stad",
+    "list": "Lijst",
+    "share": "Link kopiëren",
+    "copied": "Link gekopieerd",
+    "copyManually": "Kopieer deze link:",
+    "savePng": "PNG opslaan",
+    "minimap": "Minikaart",
+    "minimapHint": "Klik om de camera daarheen te verplaatsen",
+    "pngCaption": "DevCity · {layer} · joeyoosenbrug.nl"
+  }
+}

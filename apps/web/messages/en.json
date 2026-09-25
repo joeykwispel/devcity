@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "title": "DevCity · Joey Oosenbrug",
+    "description": "The CV and GitHub activity of Joey Oosenbrug, rendered as an explorable 3D city.",
+    "layerTitle": "{layer} · DevCity · Joey Oosenbrug"
+  },
+  "header": {
+    "portfolio": "{name}, portfolio",
+    "layers": "City layers",
+    "theme": "Switch to {theme, select, light {light} other {dark}} theme",
+    "language": "Language"
+  },
+  "layers": {
+    "skills": "Skills",
+    "career": "Career",
+    "repos": "My repos",
+    "anyRepo": "Any repo"
+  },
+  "common": {
+    "loading": "building city...",
+    "close": "Close details",
+    "now": "now",
+    "years": "{years} {count, plural, one {yr} other {yrs}}",
+    "yearsShort": "{years}y",
+    "yearsLong": "{years} {count, plural, one {year} other {years}}",
+    "hint": "drag to pan · right-drag to rotate · scroll to zoom · click a building",
+    "comingSoon": "This layer is under construction.",
+    "durationYears": "{count, plural, one {# yr} other {# yrs}}",
+    "durationMonths": "{count, plural, one {# mo} other {# mos}}"
+  },
+  "skills": {
+    "title": "Skills",
+    "intro": "Every skill on my CV is a building. The taller it is, the more years I have used it in real projects.",
+    "districts": "Districts",
+    "details": "{name} details",
+    "experience": "experience",
+    "district": "district",
+    "usedAt": "used at",
+    "listed": "listed",
+    "listedLong": "listed on CV",
+    "notTied": "On my CV, but not tied to a specific role, so it gets the minimum height."
+  },
+  "career": {
+    "title": "Career",
+    "intro": "My career as a boulevard. Time runs left to right: work on one side, education and training on the other. A building is as long as the job lasted and as tall as the number of technologies I used there.",
+    "legend": "Legend",
+    "kinds": {
+      "work": "Work",
+      "internship": "Internship",
+      "other": "Other job",
+      "education": "Education",
+      "certification": "Training"
+    },
+    "sides": {
+      "work": "Work",
+      "education": "Education & training"
+    },
+    "stats": {
+      "career": "career",
+      "companies": "companies"
+    },
+    "details": "{name} details",
+    "period": "period",
+    "duration": "duration",
+    "via": "via {company}",
+    "whatIDid": "what I did",
+    "stack": "stack",
+    "courses": "courses",
+    "openInSkills": "Show {skill} in the skills city"
+  },
+  "repos": {
+    "title": "My repos",
+    "intro": "Each of my public repositories is a district and each of its languages a building. Footprint is the share of the code, height grows with the number of commits. Smog hangs over repos nobody has pushed to in a while.",
+    "stats": {
+      "repos": "repos",
+      "commits": "commits",
+      "languages": "languages",
+      "pullRequests": "pull requests"
+    },
+    "contributions": "Contributions",
+    "fork": "fork",
+    "archived": "archived",
+    "details": "{name} details",
+    "language": "language",
+    "share": "share of code",
+    "stars": "stars",
+    "forks": "forks",
+    "lastPush": "last push",
+    "openOnGitHub": "Open on GitHub",
+    "website": "Website",
+    "languagesHeading": "languages",
+    "topics": "topics",
+    "pullRequestsHeading": "my pull requests",
+    "prState": {
+      "open": "open",
+      "merged": "merged",
+      "closed": "closed"
+    },
+    "exploreRepo": "Explore this repo file by file",
+    "generated": "Data from GitHub, {date}",
+    "empty": "No public repositories found."
+  },
+  "anyRepo": {
+    "title": "Any repo",
+    "intro": "Type any public GitHub repository and walk through it. Top-level folders are districts, nested folders are blocks, files are buildings: the bigger the file, the taller the building.",
+    "label": "GitHub repository",
+    "placeholder": "owner/repo or GitHub URL",
+    "submit": "Build city",
+    "invalid": "Use owner/repo, for example facebook/react.",
+    "examples": "Try",
+    "loadingRepo": "Looking up {repo}...",
+    "loadingTree": "Fetching the file tree...",
+    "notFound": "{repo} does not exist or is private.",
+    "failed": "GitHub answered with an error: {message}",
+    "rateLimited": "GitHub rate limit reached. Try again in {minutes, plural, one {# minute} other {# minutes}}, or revisit a repo you opened before: those come from the cache.",
+    "rateLimit": "{remaining} of {limit} GitHub requests left",
+    "resetsIn": "resets in {minutes, plural, one {# minute} other {# minutes}}",
+    "viaProxy": "via proxy",
+    "cached": "cached",
+    "stats": {
+      "files": "files",
+      "size": "size",
+      "stars": "stars",
+      "branch": "branch"
+    },
+    "truncated": "This repository is very large. The city shows the part GitHub returned within the request budget.",
+    "omitted": "{count, plural, one {# small file is} other {# small files are}} left out to keep the city fast.",
+    "details": "{name} details",
+    "path": "path",
+    "language": "language",
+    "size": "size",
+    "openFile": "Open file on GitHub",
+    "openRepo": "Open on GitHub",
+    "empty": "Pick a repository to build its city."
+  },
+  "list": {
+    "filter": "Filter by name",
+    "noMatches": "Nothing matches this filter.",
+    "more": "{count, plural, one {# more item} other {# more items}}; use the filter to find them."
+  },
+  "toolbar": {
+    "view": "View",
+    "city": "3D city",
+    "list": "List",
+    "share": "Copy link",
+    "copied": "Link copied",
+    "copyManually": "Copy this link:",
+    "savePng": "Save PNG",
+    "minimap": "Minimap",
+    "minimapHint": "Click to move the camera there",
+    "pngCaption": "DevCity · {layer} · joeyoosenbrug.nl"
+  }
+}

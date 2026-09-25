@@ -3,6 +3,8 @@ import { z } from 'zod'
 export const localized = z.object({ en: z.string().min(1), nl: z.string().min(1) })
 export type Localized = z.infer<typeof localized>
 
+export const localizedList = z.object({ en: z.array(z.string()), nl: z.array(z.string()) })
+
 const yearMonth = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, 'Expected YYYY-MM')
 
 export const categorySchema = z.object({
@@ -30,7 +32,21 @@ export const roleSchema = z.object({
   end: yearMonth.nullable(),
   via: z.string().optional(),
   location: z.string().optional(),
+  title: localized,
+  summary: localized,
+  bullets: localizedList,
   stack: z.array(z.string()),
+})
+
+export const educationSchema = z.object({
+  id: z.string().min(1),
+  kind: z.enum(['education', 'certification']),
+  institution: z.string().optional(),
+  startYear: z.number().int(),
+  endYear: z.number().int(),
+  title: localized,
+  detail: localized.optional(),
+  courses: z.array(z.string()).optional(),
 })
 
 const unique = <T>(items: T[], key: (t: T) => string) => {
@@ -49,6 +65,7 @@ export const cvSchema = z
     categories: z.array(categorySchema).min(1),
     skills: z.array(skillSchema),
     roles: z.array(roleSchema),
+    education: z.array(educationSchema),
   })
   .superRefine((cv, ctx) => {
     const issue = (message: string, path: (string | number)[]) =>
@@ -58,6 +75,7 @@ export const cvSchema = z
       ['categories', cv.categories],
       ['skills', cv.skills],
       ['roles', cv.roles],
+      ['education', cv.education],
     ] as const) {
       for (const id of unique<{ id: string }>([...list], (x) => x.id))
         issue(`Duplicate id "${id}"`, [name])
@@ -76,9 +94,14 @@ export const cvSchema = z
     })
     cv.roles.forEach((r, i) => {
       if (r.end && r.end < r.start) issue('end is before start', ['roles', i, 'end'])
+      if (r.bullets.en.length !== r.bullets.nl.length)
+        issue('bullets differ in length between en and nl', ['roles', i, 'bullets'])
       r.stack.forEach((s, j) => {
         if (!skills.has(s)) issue(`Unknown skill "${s}"`, ['roles', i, 'stack', j])
       })
+    })
+    cv.education.forEach((e, i) => {
+      if (e.endYear < e.startYear) issue('endYear is before startYear', ['education', i, 'endYear'])
     })
   })
 
@@ -86,3 +109,4 @@ export type CV = z.infer<typeof cvSchema>
 export type Category = z.infer<typeof categorySchema>
 export type Skill = z.infer<typeof skillSchema>
 export type Role = z.infer<typeof roleSchema>
+export type Education = z.infer<typeof educationSchema>

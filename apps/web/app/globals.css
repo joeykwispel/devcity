@@ -148,6 +148,35 @@
     cursor: not-allowed;
   }
 
+  /* Segmented EN | NL pill, matching the portfolio's language switch. */
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding: 2px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+  .lang-switch button {
+    height: 100%;
+    padding: 0 0.7rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+  .lang-switch button:hover {
+    color: var(--text);
+  }
+  .lang-switch button[aria-current='true'] {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
   .tag {
     display: inline-block;
     padding: 0.1rem 0.5rem;

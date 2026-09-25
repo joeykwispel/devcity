@@ -1,17 +1,20 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { setTheme, useTheme } from '@/lib/theme'
 
 export function ThemeToggle() {
+  const t = useTranslations('header')
   const theme = useTheme()
   const next = theme === 'dark' ? 'light' : 'dark'
+  const label = t('theme', { theme: next })
   return (
     <button
       type="button"
-      className="chip w-9 justify-center px-0"
+      className="chip panel w-9 justify-center px-0"
       onClick={() => setTheme(next)}
-      aria-label={`Switch to ${next} theme`}
-      title={`Switch to ${next} theme`}
+      aria-label={label}
+      title={label}
     >
       {theme === 'dark' ? (
         <svg

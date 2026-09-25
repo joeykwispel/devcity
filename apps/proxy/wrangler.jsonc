@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "devcity-github-proxy",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  // Public settings. The token is a secret: `wrangler secret put GITHUB_TOKEN` (or the deploy
+  // workflow, from the GH_PROXY_TOKEN repository secret). Never put it in this file.
+  "vars": {
+    "ALLOWED_ORIGINS": "https://devcity.joeyoosenbrug.nl,http://localhost:3000",
+    "CACHE_TTL": "600",
+  },
+}

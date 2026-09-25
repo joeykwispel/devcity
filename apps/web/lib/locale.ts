@@ -1,9 +1,48 @@
+'use client'
+
+import { useFormatter, useLocale, useTranslations } from 'next-intl'
+import { useCallback } from 'react'
 import type { Localized } from './cv/schema'
 
-// Replaced by next-intl routing in phase 3.
-export const locale = 'en' satisfies keyof Localized
+/** Picks the current language from a {en, nl} CV value. */
+export function useLocalized() {
+  const locale = useLocale()
+  return useCallback((value: Localized) => value[locale], [locale])
+}
 
-export const t = (value: Localized) => value[locale]
-
-const yearsFormat = new Intl.NumberFormat(locale, { maximumFractionDigits: 1 })
-export const formatYears = (months: number) => yearsFormat.format(months / 12)
+export function useFormatters() {
+  const format = useFormatter()
+  const t = useTranslations('common')
+  return {
+    /** Months as years with at most one decimal, in the current locale (5.5 / 5,5). */
+    years: (months: number) => format.number(months / 12, { maximumFractionDigits: 1 }),
+    /** YYYY-MM as a short month and year ("Jul 2026" / "jul 2026"). */
+    month: (value: string) => {
+      const [y, m] = value.split('-').map(Number)
+      return format.dateTime(new Date(y!, m! - 1, 1), { month: 'short', year: 'numeric' })
+    },
+    /** Bytes as B, kB or MB in the current locale. */
+    bytes: (bytes: number) => {
+      const [value, unit] =
+        bytes >= 1e6
+          ? [bytes / 1e6, 'megabyte']
+          : bytes >= 1e3
+            ? [bytes / 1e3, 'kilobyte']
+            : [bytes, 'byte']
+      return format.number(value, {
+        style: 'unit',
+        unit,
+        unitDisplay: 'short',
+        maximumFractionDigits: 1,
+      })
+    },
+    /** Months as "1 yr 3 mos" / "1 jr 3 mnd". */
+    duration: (months: number) => {
+      const y = Math.floor(months / 12)
+      const m = months % 12
+      return [y && t('durationYears', { count: y }), (m || !y) && t('durationMonths', { count: m })]
+        .filter(Boolean)
+        .join(' ')
+    },
+  }
+}

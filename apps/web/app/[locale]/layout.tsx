@@ -20,13 +20,27 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
   const locale = await pageLocale(params)
   const t = await getTranslations({ locale, namespace: 'meta' })
+  const title = t('title')
+  const description = t('description')
   return {
     metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
-    title: t('title'),
-    description: t('description'),
+    title,
+    description,
     alternates: {
       languages: Object.fromEntries(routing.locales.map((l) => [l, `/${l}/`])),
     },
+    // Link previews in chat apps and on social sites; the image is rendered by ./og.png/route.tsx.
+    openGraph: {
+      images: [{ url: `/${locale}/og.png`, width: 1200, height: 630, alt: title }],
+      type: 'website',
+      siteName: 'DevCity',
+      title,
+      description,
+      url: `/${locale}/`,
+      locale: locale === 'nl' ? 'nl_NL' : 'en_US',
+      alternateLocale: locale === 'nl' ? 'en_US' : 'nl_NL',
+    },
+    twitter: { card: 'summary_large_image', title, description, images: [`/${locale}/og.png`] },
   }
 }
 

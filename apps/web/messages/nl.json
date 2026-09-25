@@ -8,8 +8,7 @@
     "portfolio": "{name}, portfolio",
     "layers": "Stadslagen",
     "theme": "Wissel naar {theme, select, light {licht} other {donker}} thema",
-    "language": "Taal",
-    "switchTo": "English"
+    "language": "Taal"
   },
   "layers": {
     "skills": "Skills",

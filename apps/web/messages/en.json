@@ -8,8 +8,7 @@
     "portfolio": "{name}, portfolio",
     "layers": "City layers",
     "theme": "Switch to {theme, select, light {light} other {dark}} theme",
-    "language": "Language",
-    "switchTo": "Nederlands"
+    "language": "Language"
   },
   "layers": {
     "skills": "Skills",

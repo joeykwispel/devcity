@@ -95,20 +95,33 @@ export async function GET(_request: Request, { params }: RouteContext<'/[locale]
             fontWeight: 800,
           }}
         >
-          <span style={{ color: c.accent }}>&lt;</span>JO<span style={{ color: c.accent }}>/&gt;</span>
+          <span style={{ color: c.accent }}>&lt;</span>JO
+          <span style={{ color: c.accent }}>/&gt;</span>
         </div>
 
-        <div style={{ display: 'flex', marginTop: 56, fontSize: 88, fontWeight: 800, letterSpacing: -3 }}>
+        <div
+          style={{
+            display: 'flex',
+            marginTop: 56,
+            fontSize: 88,
+            fontWeight: 800,
+            letterSpacing: -3,
+          }}
+        >
           DevCity
         </div>
         <div style={{ display: 'flex', marginTop: 8, fontSize: 36, color: c.accent }}>
           {cv.profile.title[locale]}
         </div>
-        <div style={{ display: 'flex', marginTop: 24, fontSize: 26, lineHeight: 1.4, color: c.muted }}>
+        <div
+          style={{ display: 'flex', marginTop: 24, fontSize: 26, lineHeight: 1.4, color: c.muted }}
+        >
           {t('description')}
         </div>
 
-        <div style={{ display: 'flex', marginTop: 'auto', fontSize: 24, color: c.muted }}>{host}</div>
+        <div style={{ display: 'flex', marginTop: 'auto', fontSize: 24, color: c.muted }}>
+          {host}
+        </div>
       </div>
     </div>,
     size,

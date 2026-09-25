@@ -1,0 +1,792 @@
+{
+  "profile": {
+    "name": "Joey Oosenbrug",
+    "title": {
+      "en": "Senior Front-end & Full-Stack Developer",
+      "nl": "Senior Front-end & Full-Stack Developer"
+    },
+    "location": "Druten, Netherlands",
+    "links": {
+      "website": "https://joeyoosenbrug.nl",
+      "github": "https://github.com/joeykwispel",
+      "linkedin": "https://www.linkedin.com/in/joey-oosenbrug-3a7975171/"
+    }
+  },
+  "categories": [
+    {
+      "id": "frontend",
+      "hue": 168,
+      "label": {
+        "en": "Front-end",
+        "nl": "Front-end"
+      }
+    },
+    {
+      "id": "backend",
+      "hue": 262,
+      "label": {
+        "en": "Back-end",
+        "nl": "Back-end"
+      }
+    },
+    {
+      "id": "devops",
+      "hue": 205,
+      "label": {
+        "en": "Cloud & DevOps",
+        "nl": "Cloud & DevOps"
+      }
+    },
+    {
+      "id": "testing",
+      "hue": 32,
+      "label": {
+        "en": "Testing",
+        "nl": "Testen"
+      }
+    },
+    {
+      "id": "tools",
+      "hue": 330,
+      "label": {
+        "en": "Tools & platforms",
+        "nl": "Tools & platforms"
+      }
+    },
+    {
+      "id": "methods",
+      "hue": 95,
+      "label": {
+        "en": "Methods & standards",
+        "nl": "Methodieken & standaarden"
+      }
+    },
+    {
+      "id": "soft",
+      "hue": 12,
+      "label": {
+        "en": "Soft skills",
+        "nl": "Soft skills"
+      }
+    },
+    {
+      "id": "languages",
+      "hue": 55,
+      "label": {
+        "en": "Languages",
+        "nl": "Talen"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "Angular",
+      "category": "frontend"
+    },
+    {
+      "id": "Angular Material",
+      "category": "frontend"
+    },
+    {
+      "id": "React",
+      "category": "frontend"
+    },
+    {
+      "id": "Vue.js",
+      "category": "frontend"
+    },
+    {
+      "id": "Next.js",
+      "category": "frontend"
+    },
+    {
+      "id": "Nuxt",
+      "category": "frontend"
+    },
+    {
+      "id": "Ionic Framework",
+      "category": "frontend"
+    },
+    {
+      "id": "TypeScript",
+      "category": "frontend"
+    },
+    {
+      "id": "JavaScript (ES6)",
+      "category": "frontend"
+    },
+    {
+      "id": "RxJS",
+      "category": "frontend"
+    },
+    {
+      "id": "Web Components",
+      "category": "frontend"
+    },
+    {
+      "id": "jQuery",
+      "category": "frontend"
+    },
+    {
+      "id": "HTML5",
+      "category": "frontend"
+    },
+    {
+      "id": "Semantic HTML5",
+      "category": "frontend"
+    },
+    {
+      "id": "CSS3",
+      "category": "frontend"
+    },
+    {
+      "id": "SASS",
+      "category": "frontend"
+    },
+    {
+      "id": "SCSS",
+      "category": "frontend"
+    },
+    {
+      "id": "Styled Components",
+      "category": "frontend"
+    },
+    {
+      "id": "Tailwind CSS",
+      "category": "frontend"
+    },
+    {
+      "id": "Shadcn",
+      "category": "frontend"
+    },
+    {
+      "id": "I18N",
+      "category": "frontend"
+    },
+    {
+      "id": "D3.js",
+      "category": "frontend"
+    },
+    {
+      "id": "Chart.js",
+      "category": "frontend"
+    },
+    {
+      "id": "Twig",
+      "category": "frontend"
+    },
+    {
+      "id": "PHP",
+      "category": "backend"
+    },
+    {
+      "id": "Laravel",
+      "category": "backend"
+    },
+    {
+      "id": "Symfony",
+      "category": "backend"
+    },
+    {
+      "id": "Zend",
+      "category": "backend"
+    },
+    {
+      "id": "NestJS",
+      "category": "backend"
+    },
+    {
+      "id": "Python",
+      "category": "backend"
+    },
+    {
+      "id": "FastAPI",
+      "category": "backend"
+    },
+    {
+      "id": "Hono",
+      "category": "backend"
+    },
+    {
+      "id": "Pydantic",
+      "category": "backend"
+    },
+    {
+      "id": "Prisma",
+      "category": "backend"
+    },
+    {
+      "id": "SQL",
+      "category": "backend"
+    },
+    {
+      "id": "MySQL",
+      "category": "backend"
+    },
+    {
+      "id": "PostgreSQL",
+      "category": "backend"
+    },
+    {
+      "id": "SQLite",
+      "category": "backend"
+    },
+    {
+      "id": "RESTful APIs",
+      "category": "backend"
+    },
+    {
+      "id": "OpenAPI",
+      "category": "backend"
+    },
+    {
+      "id": "Swagger",
+      "category": "backend"
+    },
+    {
+      "id": "JSON",
+      "category": "backend"
+    },
+    {
+      "id": "YAML",
+      "category": "backend"
+    },
+    {
+      "id": "XML",
+      "category": "backend"
+    },
+    {
+      "id": "XPath",
+      "category": "backend"
+    },
+    {
+      "id": "JWT",
+      "category": "backend"
+    },
+    {
+      "id": "Google Maps API",
+      "category": "backend"
+    },
+    {
+      "id": "Docker",
+      "category": "devops"
+    },
+    {
+      "id": "Kubernetes",
+      "category": "devops"
+    },
+    {
+      "id": "Proxmox",
+      "category": "devops"
+    },
+    {
+      "id": "Nginx",
+      "category": "devops"
+    },
+    {
+      "id": "Git",
+      "category": "devops"
+    },
+    {
+      "id": "GitHub",
+      "category": "devops"
+    },
+    {
+      "id": "GitLab",
+      "category": "devops"
+    },
+    {
+      "id": "Azure DevOps",
+      "category": "devops"
+    },
+    {
+      "id": "GitHub Actions",
+      "category": "devops"
+    },
+    {
+      "id": "CI/CD",
+      "category": "devops"
+    },
+    {
+      "id": "Bash",
+      "category": "devops"
+    },
+    {
+      "id": "Shell",
+      "category": "devops"
+    },
+    {
+      "id": "Command Line",
+      "category": "devops"
+    },
+    {
+      "id": "Microservices",
+      "category": "devops"
+    },
+    {
+      "id": "Playwright",
+      "category": "testing"
+    },
+    {
+      "id": "Jest",
+      "category": "testing"
+    },
+    {
+      "id": "Vitest",
+      "category": "testing"
+    },
+    {
+      "id": "Pytest",
+      "category": "testing"
+    },
+    {
+      "id": "Cypress",
+      "category": "testing"
+    },
+    {
+      "id": "Cucumber",
+      "category": "testing"
+    },
+    {
+      "id": "React Testing Library",
+      "category": "testing"
+    },
+    {
+      "id": "Stryker",
+      "category": "testing"
+    },
+    {
+      "id": "Storybook",
+      "category": "testing"
+    },
+    {
+      "id": "ast-grep",
+      "category": "testing"
+    },
+    {
+      "id": "MCP",
+      "category": "tools"
+    },
+    {
+      "id": "Capacitor",
+      "category": "tools"
+    },
+    {
+      "id": "Postman",
+      "category": "tools"
+    },
+    {
+      "id": "Sentry",
+      "category": "tools"
+    },
+    {
+      "id": "Jira",
+      "category": "tools"
+    },
+    {
+      "id": "Trello",
+      "category": "tools"
+    },
+    {
+      "id": "Monday",
+      "category": "tools"
+    },
+    {
+      "id": "Miro",
+      "category": "tools"
+    },
+    {
+      "id": "Figma",
+      "category": "tools"
+    },
+    {
+      "id": "WordPress",
+      "category": "tools"
+    },
+    {
+      "id": "HubSpot",
+      "category": "tools"
+    },
+    {
+      "id": "Visual Studio Code",
+      "category": "tools"
+    },
+    {
+      "id": "PhpStorm",
+      "category": "tools"
+    },
+    {
+      "id": "JetBrains",
+      "category": "tools"
+    },
+    {
+      "id": "NPM",
+      "category": "tools"
+    },
+    {
+      "id": "PNPM",
+      "category": "tools"
+    },
+    {
+      "id": "Yarn",
+      "category": "tools"
+    },
+    {
+      "id": "Turborepo",
+      "category": "tools"
+    },
+    {
+      "id": "Vite",
+      "category": "tools"
+    },
+    {
+      "id": "ESLint",
+      "category": "tools"
+    },
+    {
+      "id": "Prettier",
+      "category": "tools"
+    },
+    {
+      "id": "SEO",
+      "category": "tools"
+    },
+    {
+      "id": "Windows",
+      "category": "tools"
+    },
+    {
+      "id": "Linux",
+      "category": "tools"
+    },
+    {
+      "id": "macOS",
+      "category": "tools"
+    },
+    {
+      "id": "iOS",
+      "category": "tools"
+    },
+    {
+      "id": "Android",
+      "category": "tools"
+    },
+    {
+      "id": "Agile",
+      "category": "methods"
+    },
+    {
+      "id": "Scrum",
+      "category": "methods"
+    },
+    {
+      "id": "SAFe",
+      "category": "methods"
+    },
+    {
+      "id": "Kanban",
+      "category": "methods"
+    },
+    {
+      "id": "Scrum Master",
+      "category": "methods"
+    },
+    {
+      "id": "UX/UI Design",
+      "category": "methods"
+    },
+    {
+      "id": "UX/UI Principles",
+      "category": "methods"
+    },
+    {
+      "id": "WCAG 2.1",
+      "category": "methods"
+    },
+    {
+      "id": "WCAG 2.2",
+      "category": "methods"
+    },
+    {
+      "id": "GDPR",
+      "category": "methods"
+    },
+    {
+      "id": "Technical Leadership",
+      "category": "soft",
+      "label": {
+        "en": "Technical Leadership",
+        "nl": "Technisch leiderschap"
+      }
+    },
+    {
+      "id": "Mentoring",
+      "category": "soft",
+      "label": {
+        "en": "Mentoring",
+        "nl": "Begeleiding van developers"
+      }
+    },
+    {
+      "id": "Code Reviews",
+      "category": "soft"
+    },
+    {
+      "id": "Stakeholder Management",
+      "category": "soft",
+      "label": {
+        "en": "Stakeholder Management",
+        "nl": "Stakeholdermanagement"
+      }
+    },
+    {
+      "id": "Dutch",
+      "category": "languages",
+      "label": {
+        "en": "Dutch",
+        "nl": "Nederlands"
+      }
+    },
+    {
+      "id": "English",
+      "category": "languages",
+      "label": {
+        "en": "English",
+        "nl": "Engels"
+      }
+    }
+  ],
+  "roles": [
+    {
+      "id": "pqnavigator",
+      "company": "PQNavigator (RVO)",
+      "kind": "work",
+      "start": "2026-07",
+      "end": null,
+      "via": "Competa IT",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "JavaScript (ES6)",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "Shadcn",
+        "I18N",
+        "Vite",
+        "NestJS",
+        "Python",
+        "FastAPI",
+        "Pydantic",
+        "RESTful APIs",
+        "OpenAPI",
+        "Swagger",
+        "JSON",
+        "PostgreSQL",
+        "Prisma",
+        "JWT",
+        "ast-grep",
+        "Vitest",
+        "Jest",
+        "Pytest",
+        "ESLint",
+        "Turborepo",
+        "PNPM",
+        "Shell",
+        "Docker",
+        "Kubernetes",
+        "Proxmox",
+        "GitHub Actions",
+        "Git",
+        "WCAG 2.2",
+        "Stakeholder Management",
+        "Agile",
+        "Scrum"
+      ]
+    },
+    {
+      "id": "property-plan",
+      "company": "Property Plan",
+      "kind": "work",
+      "start": "2025-07",
+      "end": "2026-07",
+      "via": "Competa IT",
+      "location": "'s-Hertogenbosch",
+      "stack": [
+        "Angular",
+        "Ionic Framework",
+        "Capacitor",
+        "Angular Material",
+        "RxJS",
+        "TypeScript",
+        "JavaScript (ES6)",
+        "HTML5",
+        "SCSS",
+        "CSS3",
+        "RESTful APIs",
+        "JSON",
+        "Playwright",
+        "MCP",
+        "Jest",
+        "Vitest",
+        "Git",
+        "Azure DevOps",
+        "Docker",
+        "NPM",
+        "ESLint",
+        "Prettier",
+        "Agile",
+        "Scrum",
+        "Code Reviews"
+      ]
+    },
+    {
+      "id": "red-ocelot",
+      "company": "Red Ocelot",
+      "kind": "work",
+      "start": "2023-12",
+      "end": "2025-06",
+      "via": "Competa IT",
+      "stack": [
+        "React",
+        "Next.js",
+        "Web Components",
+        "D3.js",
+        "Chart.js",
+        "TypeScript",
+        "JavaScript (ES6)",
+        "HTML5",
+        "SCSS",
+        "CSS3",
+        "SASS",
+        "NestJS",
+        "Hono",
+        "Python",
+        "Prisma",
+        "PostgreSQL",
+        "RESTful APIs",
+        "JSON",
+        "Jest",
+        "Vitest",
+        "React Testing Library",
+        "Stryker",
+        "Git",
+        "GitHub",
+        "GitLab",
+        "GitHub Actions",
+        "Docker",
+        "Sentry",
+        "Trello",
+        "CI/CD",
+        "Microservices",
+        "Agile",
+        "Scrum",
+        "SAFe",
+        "WCAG 2.1",
+        "Technical Leadership",
+        "Mentoring",
+        "Scrum Master"
+      ]
+    },
+    {
+      "id": "paramedia",
+      "company": "ParaMedia (MediumChat)",
+      "kind": "work",
+      "start": "2023-06",
+      "end": "2023-12",
+      "via": "Competa IT",
+      "location": "Purmerend",
+      "stack": [
+        "PHP",
+        "Zend",
+        "JavaScript (ES6)",
+        "jQuery",
+        "HTML5",
+        "CSS3",
+        "SCSS",
+        "JSON",
+        "XML",
+        "SEO",
+        "Trello",
+        "Sentry",
+        "Agile",
+        "Scrum",
+        "WCAG 2.1"
+      ]
+    },
+    {
+      "id": "vice-media",
+      "company": "Vice Media",
+      "kind": "work",
+      "start": "2022-11",
+      "end": "2023-05",
+      "via": "Competa IT",
+      "location": "Amsterdam",
+      "stack": [
+        "React",
+        "Next.js",
+        "JavaScript (ES6)",
+        "HTML5",
+        "SCSS",
+        "CSS3",
+        "JSON",
+        "XML",
+        "Git",
+        "GitHub",
+        "Cypress",
+        "Cucumber",
+        "Trello",
+        "Jira",
+        "Figma",
+        "Agile",
+        "Scrum"
+      ]
+    },
+    {
+      "id": "jex",
+      "company": "JEX",
+      "kind": "work",
+      "start": "2022-05",
+      "end": "2022-08",
+      "via": "Competa IT",
+      "location": "Rotterdam",
+      "stack": ["JavaScript (ES6)", "HTML5", "CSS3", "HubSpot", "SEO", "Trello", "Agile", "Scrum"]
+    },
+    {
+      "id": "ehvg",
+      "company": "EHVG ehealth venture group",
+      "kind": "work",
+      "start": "2021-08",
+      "end": "2022-05",
+      "stack": [
+        "Vue.js",
+        "JavaScript (ES6)",
+        "HTML5",
+        "SCSS",
+        "Styled Components",
+        "Git",
+        "Agile",
+        "Scrum"
+      ]
+    },
+    {
+      "id": "cruisereizen",
+      "company": "Cruisereizen",
+      "kind": "internship",
+      "start": "2021-02",
+      "end": "2021-07",
+      "location": "Rotterdam",
+      "stack": ["PHP", "Laravel", "Twig", "SCSS", "CSS3", "Google Maps API", "Agile", "Scrum"]
+    },
+    {
+      "id": "competa-internship",
+      "company": "Competa IT",
+      "kind": "internship",
+      "start": "2019-08",
+      "end": "2020-01",
+      "location": "Den Haag",
+      "stack": ["JavaScript (ES6)", "HTML5", "SCSS", "CSS3", "Twig", "WordPress"]
+    }
+  ]
+}

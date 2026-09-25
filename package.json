@@ -1,6 +1,14 @@
 {
   "name": "devcity",
   "private": true,
+  "description": "The CV and GitHub activity of Joey Oosenbrug, rendered as an explorable 3D city.",
+  "author": "Joey Oosenbrug (https://github.com/joeykwispel)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeykwispel/devcity.git"
+  },
+  "homepage": "https://devcity.joeyoosenbrug.nl",
   "packageManager": "pnpm@11.22.0",
   "engines": {
     "node": ">=24"

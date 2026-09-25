@@ -102,6 +102,15 @@ export function SkillsView({ buildMonth }: { buildMonth: MonthIndex }) {
       panel={<SkillPanel city={city} />}
       hint={t('common.hint')}
       list={(interactive) => <CityList groups={groups} interactive={interactive} />}
+      legend={
+        <section aria-labelledby="skills-all" className="grid gap-3">
+          <h2 id="skills-all" className="font-mono text-[0.75rem] text-muted">
+            <span aria-hidden="true">{'// '}</span>
+            {t('skills.all')}
+          </h2>
+          <CityList groups={groups} interactive filterable compact />
+        </section>
+      }
     />
   )
 }

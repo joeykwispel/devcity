@@ -110,7 +110,8 @@ export default function CityScene({
         makeDefault
         enableDamping
         target={[0, 0, 0]}
-        minDistance={20 * k}
+        // Capped, not scaled up: in a big city you still want to get close to a single house.
+        minDistance={Math.min(20 * k, 20)}
         maxDistance={320 * distance}
         maxPolarAngle={Math.PI / 2.4}
       />

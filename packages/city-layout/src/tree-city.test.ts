@@ -62,6 +62,29 @@ describe('layoutTreeCity', () => {
     expect(fileHeight(0)).toBeGreaterThan(0)
   })
 
+  it('keeps the minimum size for a small repository', () => {
+    expect(city.width).toBe(100)
+  })
+
+  it('grows the city for a big repository instead of shrinking the buildings', () => {
+    // 2,000 files spread over nested folders, like a real monorepo.
+    const many = Array.from({ length: 2_000 }, (_, i) => ({
+      path: `packages/p${i % 20}/src/${i % 7}/file${i}.ts`,
+      size: 500 + ((i * 7919) % 40_000),
+    }))
+    const big = layoutTreeCity(many, { size: 100, minBuildingWidth: 1.4 })
+    expect(big.width).toBeGreaterThan(100)
+    expect(big.width).toBe(big.depth)
+    const widths = big.buildings.map((b) => Math.min(b.width, b.depth)).sort((a, b) => a - b)
+    // Allow for the 8% street inset.
+    expect(widths[Math.floor(widths.length * 0.1)]).toBeGreaterThanOrEqual(1.4 * 0.92)
+  })
+
+  it('stops growing at maxSize', () => {
+    const many = Array.from({ length: 3_000 }, (_, i) => ({ path: `a/b/c/f${i}`, size: 1_000 }))
+    expect(layoutTreeCity(many, { maxSize: 150 }).width).toBe(150)
+  })
+
   it('drops the smallest files beyond maxFiles and reports how many', () => {
     const capped = layoutTreeCity(files, { maxFiles: 4 })
     expect(capped.buildings).toHaveLength(4)

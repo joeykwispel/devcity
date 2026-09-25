@@ -33,12 +33,15 @@ export function CityList({
   interactive,
   limit = Infinity,
   filterable = false,
+  compact = false,
 }: {
   groups: ListGroup[]
   interactive: boolean
   /** Maximum items per group (large repositories). */
   limit?: number
   filterable?: boolean
+  /** Tighter rows, for the always-visible legend next to the city. */
+  compact?: boolean
 }) {
   const t = useTranslations('list')
   const selected = useCityStore((s) => s.selected)
@@ -82,7 +85,7 @@ export function CityList({
     )
 
   return (
-    <div className="grid gap-4">
+    <div className={cn('grid', compact ? 'gap-3' : 'gap-4')}>
       {filterable && (
         <div>
           <label htmlFor="list-filter" className="sr-only">
@@ -114,7 +117,7 @@ export function CityList({
             {g.label}
             <span className="font-normal text-muted">{g.total}</span>
           </h2>
-          <ul className="grid gap-0.5">
+          <ul className={cn('grid', compact ? 'gap-px' : 'gap-0.5')}>
             {g.items.map((i) => (
               <li key={i.id}>
                 <button
@@ -122,7 +125,8 @@ export function CityList({
                   onClick={() => select(i.id)}
                   aria-pressed={selected === i.id}
                   className={cn(
-                    'relative grid w-full grid-cols-[1fr_auto] items-center gap-3 overflow-hidden rounded-[var(--radius-sm)] px-2.5 py-1.5 text-left text-sm transition-colors hover:bg-surface-2',
+                    'relative grid w-full grid-cols-[1fr_auto] items-center gap-3 overflow-hidden rounded-[var(--radius-sm)] px-2.5 text-left transition-colors hover:bg-surface-2',
+                    compact ? 'py-1 text-[0.8rem]' : 'py-1.5 text-sm',
                     selected === i.id && 'bg-surface-2 text-accent-text',
                   )}
                 >

@@ -154,6 +154,7 @@ export function LayerShell({
   panel,
   hint,
   list,
+  legend,
   tools,
 }: {
   scene: ReactNode
@@ -162,6 +163,11 @@ export function LayerShell({
   hint?: string
   /** Renders the layer as a list; interactive in list view, screen-reader-only in city view. */
   list?: (interactive: boolean) => ReactNode
+  /**
+   * Always-visible list under the intro in city view (from lg up), so the whole layer can be read
+   * at a glance. It replaces the screen-reader-only list, since it is the same content.
+   */
+  legend?: ReactNode
   /** Extra toolbar buttons for this layer. */
   tools?: ReactNode
 }) {
@@ -189,9 +195,17 @@ export function LayerShell({
     <>
       <div className="absolute inset-0">{scene}</div>
 
-      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 grid max-h-[calc(100dvh-var(--nav-h)-1.5rem)] w-[min(380px,calc(100%-2rem))] gap-3 overflow-y-auto [scrollbar-width:none] sm:left-6">
-        {intro}
-        <SceneToolbar>{tools}</SceneToolbar>
+      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 flex max-h-[calc(100dvh-var(--nav-h)-1.5rem)] w-[min(380px,calc(100%-2rem))] flex-col xl:max-h-[calc(100dvh-var(--nav-h)-3.5rem)] gap-3 overflow-y-auto [scrollbar-width:none] sm:left-6">
+        <div className="shrink-0">{intro}</div>
+        <div className="shrink-0">
+          <SceneToolbar>{tools}</SceneToolbar>
+        </div>
+        {legend && (
+          // Takes the remaining height and scrolls on its own, so intro and toolbar stay put.
+          <div className="glass panel pointer-events-auto hidden min-h-40 overflow-y-auto overscroll-contain p-4 [scrollbar-color:var(--border)_transparent] [scrollbar-width:thin] lg:block">
+            {legend}
+          </div>
+        )}
       </div>
 
       <div className="pointer-events-none absolute right-4 bottom-4 grid w-[min(380px,calc(100%-2rem))] sm:right-6">
@@ -205,7 +219,8 @@ export function LayerShell({
         </p>
       )}
 
-      {list?.(false)}
+      {/* Below lg the legend is hidden, so screen readers still get the list there. */}
+      {legend ? <div className="lg:hidden">{list?.(false)}</div> : list?.(false)}
     </>
   )
 }

@@ -12,14 +12,5 @@ function subscribe(onChange: () => void) {
   return () => observer.disconnect()
 }
 
-/** Current theme, kept in sync with the data-theme attribute on <html>. */
+/** Current theme, kept in sync with the data-theme attribute on <html> (set by the kit's header). */
 export const useTheme = () => useSyncExternalStore(subscribe, read, () => 'dark' as Theme)
-
-export function setTheme(theme: Theme) {
-  document.documentElement.dataset.theme = theme
-  try {
-    localStorage.setItem('theme', theme)
-  } catch {
-    // Private mode or blocked storage: the theme still applies for this visit.
-  }
-}

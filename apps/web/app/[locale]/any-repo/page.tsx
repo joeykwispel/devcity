@@ -8,11 +8,11 @@ export const generateMetadata = ({ params }: PageProps<'/[locale]/any-repo'>) =>
 export default async function AnyRepoPage({ params }: PageProps<'/[locale]/any-repo'>) {
   await pageLocale(params)
   return (
-    <main className="relative h-dvh w-full overflow-hidden">
+    <div className="relative h-dvh w-full overflow-hidden">
       {/* The repo comes from ?repo=, which only exists in the browser on a static export. */}
       <Suspense>
         <AnyRepoView />
       </Suspense>
-    </main>
+    </div>
   )
 }

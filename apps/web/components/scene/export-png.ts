@@ -14,7 +14,7 @@ export async function exportPng(canvas: HTMLCanvasElement, caption: string, file
   const font = 13 * scale
   const pad = 14 * scale
   const styles = getComputedStyle(document.documentElement)
-  const mono = styles.getPropertyValue('--font-jetbrains-mono').trim() || 'monospace'
+  const mono = styles.getPropertyValue('--mono').trim() || 'monospace'
   ctx.font = `600 ${font}px ${mono}`
   const width = ctx.measureText(caption).width
   ctx.fillStyle = styles.getPropertyValue('--bg').trim() || '#0a0e17'

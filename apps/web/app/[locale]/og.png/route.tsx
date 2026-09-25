@@ -4,6 +4,7 @@ import { pageLocale } from '@/i18n/page-locale'
 import { routing } from '@/i18n/routing'
 import { cv } from '@/lib/cv'
 import { env } from '@/lib/env'
+import { tokens } from '@/lib/tokens'
 
 // The link preview for chat apps and social sites, rendered once per locale at build time.
 // A route handler rather than opengraph-image.tsx: the static export then writes a real .png,
@@ -16,16 +17,8 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-// Dark theme tokens from globals.css; satori cannot read CSS variables.
-const c = {
-  bg: '#0a0e17',
-  bg2: '#111726',
-  border: 'rgba(255, 255, 255, 0.09)',
-  text: '#e6e9f2',
-  muted: '#98a3b9',
-  accent: '#7dd3c0',
-  accent2: '#b49cff',
-}
+// Dark theme tokens; satori cannot read CSS variables.
+const c = tokens.dark
 
 // A small skyline: [height, colour] per tower, left to right.
 const towers: [number, string][] = [
@@ -90,7 +83,7 @@ export async function GET(_request: Request, { params }: RouteContext<'/[locale]
             padding: '8px 16px',
             borderRadius: 12,
             border: `1px solid ${c.border}`,
-            background: 'rgba(255, 255, 255, 0.04)',
+            background: c.surface,
             fontSize: 30,
             fontWeight: 800,
           }}

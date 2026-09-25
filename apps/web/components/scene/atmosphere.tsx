@@ -12,19 +12,20 @@ import {
   type Scene,
 } from 'three'
 import type { Theme } from '@/lib/theme'
+import { tokens } from '@/lib/tokens'
 import { nightUniform } from './scene-store'
 
-// Day is the light theme, night the dark theme; the portfolio backgrounds are the sky.
+// Day is the light theme, night the dark theme; the kit's page backgrounds are the sky and ground.
 const day = {
-  sky: new Color('#f4f6fb'),
-  ground: new Color('#e3e8f3'),
+  sky: new Color(tokens.light.bg),
+  ground: new Color(tokens.light.bg2),
   sun: new Color('#ffffff'),
   hemi: 0.9,
   intensity: 1.9,
 }
 const night = {
-  sky: new Color('#0a0e17'),
-  ground: new Color('#111726'),
+  sky: new Color(tokens.dark.bg),
+  ground: new Color(tokens.dark.bg2),
   sun: new Color('#9db4ff'),
   hemi: 0.5,
   intensity: 1.1,

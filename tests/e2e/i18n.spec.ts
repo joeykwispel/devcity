@@ -27,7 +27,10 @@ test.describe('language redirect', () => {
 
 test('the language switcher keeps the layer and the URL state @mobile', async ({ page }) => {
   await page.goto('/en/career/?view=list')
-  await page.getByRole('button', { name: 'Nederlands' }).click()
+  const nl = page.getByRole('group', { name: 'Switch language' }).getByRole('link', { name: 'NL' })
+  // The plain href (new tab, no JS) is the same page in Dutch too.
+  await expect(nl).toHaveAttribute('href', '/nl/career/')
+  await nl.click()
   await expect(page).toHaveURL(/\/nl\/career\/\?view=list$/)
   await expect(page.locator('html')).toHaveAttribute('lang', 'nl')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Loopbaan')

@@ -5,6 +5,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { useEffect } from 'react'
 import { useCityStore } from '@/lib/city-store'
 import { useTheme } from '@/lib/theme'
+import { tokens } from '@/lib/tokens'
 import { Atmosphere } from './atmosphere'
 import { CameraSync } from './camera-sync'
 import { InstancedBuildings } from './instanced-buildings'
@@ -98,7 +99,7 @@ export default function CityScene({
         />
       ))}
 
-      <InstancedBuildings buildings={buildings} ground={theme === 'dark' ? '#111726' : '#e3e8f3'} />
+      <InstancedBuildings buildings={buildings} ground={tokens[theme].bg2} />
       <Smog buildings={buildings} />
       <Traffic districts={streets} />
 

@@ -7,3 +7,5 @@ coverage/
 .playwright-mcp/
 playwright-report/
 test-results/
+# Design kit, copied unchanged from joeykwispel/Portfolio (docs/design-kit)
+apps/web/components/jo/

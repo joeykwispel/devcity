@@ -8,8 +8,8 @@ export const generateMetadata = ({ params }: PageProps<'/[locale]/repos'>) =>
 export default async function ReposPage({ params }: PageProps<'/[locale]/repos'>) {
   await pageLocale(params)
   return (
-    <main className="relative h-dvh w-full overflow-hidden">
+    <div className="relative h-dvh w-full overflow-hidden">
       <ReposView buildDay={today()} />
-    </main>
+    </div>
   )
 }

@@ -8,8 +8,8 @@ export const generateMetadata = ({ params }: PageProps<'/[locale]/career'>) =>
 export default async function CareerPage({ params }: PageProps<'/[locale]/career'>) {
   await pageLocale(params)
   return (
-    <main className="relative h-dvh w-full overflow-hidden">
+    <div className="relative h-dvh w-full overflow-hidden">
       <CareerView buildMonth={monthIndexOf(new Date())} />
-    </main>
+    </div>
   )
 }

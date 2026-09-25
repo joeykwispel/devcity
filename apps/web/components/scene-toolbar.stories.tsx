@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { LanguageSwitcher } from './language-switcher'
 import { SceneToolbar } from './scene-toolbar'
-import { ThemeToggle } from './theme-toggle'
 
 const meta = {
   title: 'Layer/SceneToolbar',
@@ -13,13 +11,3 @@ type Story = StoryObj<typeof meta>
 
 /** 3D/list switch and share link, shown under the intro card of every layer. */
 export const Toolbar: Story = {}
-
-/** The controls on the right of the header. */
-export const HeaderControls: Story = {
-  render: () => (
-    <div className="flex gap-1">
-      <LanguageSwitcher />
-      <ThemeToggle />
-    </div>
-  ),
-}

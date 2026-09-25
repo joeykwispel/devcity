@@ -5,10 +5,7 @@
     "layerTitle": "{layer} · DevCity · Joey Oosenbrug"
   },
   "header": {
-    "portfolio": "{name}, portfolio",
-    "layers": "Stadslagen",
-    "theme": "Wissel naar {theme, select, light {licht} other {donker}} thema",
-    "language": "Taal"
+    "skip": "Naar de inhoud"
   },
   "layers": {
     "skills": "Skills",

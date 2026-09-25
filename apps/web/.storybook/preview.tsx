@@ -1,15 +1,13 @@
 import type { Preview } from '@storybook/nextjs-vite'
-import { Inter, JetBrains_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { useEffect } from 'react'
 import en from '../messages/en.json'
 import nl from '../messages/nl.json'
+import '@fontsource-variable/inter'
+import '@fontsource-variable/jetbrains-mono'
 import '../app/globals.css'
 
 const messages = { en, nl }
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono' })
 
 /**
  * Stories render with the same tokens, fonts and translations as the site. The toolbar switches
@@ -47,7 +45,7 @@ const preview: Preview = {
           messages={messages[locale]}
           timeZone="Europe/Amsterdam"
         >
-          <div className={`${inter.variable} ${mono.variable} p-6 font-sans text-text`}>
+          <div className="p-6 font-sans text-text">
             <Story />
           </div>
         </NextIntlClientProvider>

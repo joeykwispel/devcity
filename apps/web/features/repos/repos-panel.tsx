@@ -124,7 +124,7 @@ function RepoPanel({
         )}
         <Link
           className="chip no-underline"
-          href={{ pathname: '/any-repo', query: { repo: repo.fullName } }}
+          href={{ pathname: '/city-builder', query: { repos: repo.fullName } }}
         >
           {t('exploreRepo')}
         </Link>
@@ -177,7 +177,7 @@ function ContributionPanel({
         </a>
         <Link
           className="chip no-underline"
-          href={{ pathname: '/any-repo', query: { repo: contribution.fullName } }}
+          href={{ pathname: '/city-builder', query: { repos: contribution.fullName } }}
         >
           {t('exploreRepo')}
         </Link>

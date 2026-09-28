@@ -11,7 +11,7 @@
     "skills": "Skills",
     "career": "Loopbaan",
     "repos": "Mijn repo's",
-    "anyRepo": "Elke repo"
+    "cityBuilder": "Stadsbouwer"
   },
   "common": {
     "loading": "stad wordt gebouwd...",
@@ -23,7 +23,9 @@
     "hint": "slepen om te schuiven · rechts slepen om te draaien · scrollen om te zoomen · klik op een gebouw",
     "comingSoon": "Aan deze laag wordt nog gebouwd.",
     "durationYears": "{count, plural, one {# jr} other {# jr}}",
-    "durationMonths": "{count, plural, one {# mnd} other {# mnd}}"
+    "durationMonths": "{count, plural, one {# mnd} other {# mnd}}",
+    "showDetails": "Details tonen",
+    "hideDetails": "Details verbergen"
   },
   "skills": {
     "title": "Skills",
@@ -98,14 +100,26 @@
     "generated": "Gegevens van GitHub, {date}",
     "empty": "Geen publieke repositories gevonden."
   },
-  "anyRepo": {
-    "title": "Elke repo",
-    "intro": "Typ een publieke GitHub-repository en loop erdoorheen. Mappen in de root zijn wijken, submappen zijn blokken en bestanden zijn gebouwen: hoe groter het bestand, hoe hoger het gebouw.",
-    "label": "GitHub-repository",
-    "placeholder": "eigenaar/repo of GitHub-URL",
-    "submit": "Bouw stad",
-    "invalid": "Gebruik eigenaar/repo, bijvoorbeeld facebook/react.",
+  "cityBuilder": {
+    "title": "Stadsbouwer",
+    "intro": "Bouw een stad uit publieke GitHub-repositories. Voeg er één toe om erdoorheen te lopen, of voeg er meerdere toe (of alles van een gebruiker of organisatie) en ze groeien uit tot één stad: elke repository is een wijk, mappen zijn blokken, bestanden zijn gebouwen.",
+    "label": "GitHub-repositories toevoegen",
+    "placeholder": "eigenaar/repo, URL of GitHub-gebruiker",
+    "submit": "Toevoegen",
+    "invalid": "Gebruik eigenaar/repo (zoals facebook/react) of een GitHub-gebruikersnaam. Scheid er meerdere met spaties of komma's.",
     "examples": "Probeer",
+    "allRepos": "{user}/* (alle repo's)",
+    "inCity": "In deze stad",
+    "clear": "Alles wissen",
+    "remove": "{repo} verwijderen",
+    "focusRepo": "{repo} uitlichten",
+    "limit": "Een stad bevat maximaal {max} repositories; de rest is niet toegevoegd.",
+    "importing": "Repositories van {user} ophalen...",
+    "importEmpty": "{user} heeft geen eigen publieke repositories.",
+    "progress": "{done} van {total} repositories opgehaald...",
+    "repoFailed": "mislukt",
+    "repoLoading": "laden",
+    "repoFiles": "{count, plural, one {# bestand} other {# bestanden}}",
     "loadingRepo": "{repo} opzoeken...",
     "loadingTree": "Bestandsboom ophalen...",
     "notFound": "{repo} bestaat niet of is privé.",
@@ -116,20 +130,22 @@
     "viaProxy": "via proxy",
     "cached": "uit cache",
     "stats": {
+      "repos": "repo's",
       "files": "bestanden",
       "size": "grootte",
       "stars": "sterren",
       "branch": "branch"
     },
-    "truncated": "Deze repository is erg groot. De stad toont het deel dat GitHub binnen het verzoekbudget teruggaf.",
+    "truncated": "{count, plural, one {Deze repository is} other {# repositories zijn}} erg groot. De stad toont het deel dat GitHub binnen het verzoekbudget teruggaf.",
     "omitted": "{count, plural, one {# klein bestand is} other {# kleine bestanden zijn}} weggelaten om de stad snel te houden.",
     "details": "Details van {name}",
     "path": "pad",
     "language": "taal",
     "size": "grootte",
+    "repo": "repository",
     "openFile": "Bestand openen op GitHub",
     "openRepo": "Openen op GitHub",
-    "empty": "Kies een repository om de stad te bouwen."
+    "empty": "Voeg een repository toe om te beginnen met bouwen."
   },
   "list": {
     "filter": "Filter op naam",

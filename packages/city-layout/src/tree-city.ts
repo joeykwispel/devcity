@@ -8,27 +8,34 @@ export interface FileInput {
 }
 
 export interface FileBuilding extends Plot {
-  /** Full path, unique. */
+  /** Full path, unique. In a city of several repositories it starts with the repository id. */
   id: string
-  /** Top-level directory, or ROOT_DISTRICT for files in the repository root. */
+  /** Path inside its repository. */
+  path: string
+  /** Repository id in a city of several repositories, '' in a single-repository city. */
+  repo: string
+  /**
+   * Top-level directory (or ROOT_DISTRICT for root files) in a single-repository city, the
+   * repository id in a city of several.
+   */
   district: string
   height: number
   size: number
 }
 
 export interface TreeBlock extends Plot {
-  /** Directory path. */
+  /** Directory path (prefixed with the repository id in a city of several repositories). */
   id: string
-  /** 1 for top-level directories, 2 for their children, ... */
+  /** 1 for the directories right under a district, 2 for their children, ... */
   level: number
 }
 
 export interface TreeCityLayout {
   width: number
   depth: number
-  /** Top-level directories. */
+  /** Top-level directories, or repositories in a city of several. */
   districts: District[]
-  /** Every directory below the top level, drawn as raised pavement to show nesting. */
+  /** Every directory below a district, drawn as raised pavement to show nesting. */
   blocks: TreeBlock[]
   buildings: FileBuilding[]
   /** Files left out because of maxFiles (the smallest ones go first). */
@@ -48,7 +55,13 @@ export interface TreeCityOptions {
   maxFiles?: number
 }
 
-type Node = { name: string; path: string; size: number; children?: Node[] }
+export interface RepoFiles {
+  /** Unique id, e.g. owner/name. */
+  id: string
+  files: readonly FileInput[]
+}
+
+type Node = { name: string; path: string; size: number; repo: string; children?: Node[] }
 
 /** Footprint grows with the logarithm of the file size so one huge asset cannot flatten the rest. */
 export const fileWeight = (size: number) => 1 + Math.log2(1 + size / 512)
@@ -62,6 +75,51 @@ export const fileHeight = (size: number) => 0.6 + Math.log2(1 + size / 128) ** 1
 // Streets in world units. They stay the same width however big the city gets.
 const STREET = { district: 3, districtEdge: 2, block: 1, blockEdge: 1, lot: 0.5, lotEdge: 0.5 }
 
+/** Keeps the biggest files when there are more than `max`. */
+const keepBiggest = (files: readonly FileInput[], max: number) =>
+  files.length > max ? [...files].sort((a, b) => b.size - a.size).slice(0, max) : files
+
+/**
+ * Directory tree of one repository under `root`. Paths get `prefix` so they stay unique across
+ * repositories. Root files go into `rootFiles` when given, else straight into `root`.
+ */
+function addTree(
+  root: Node,
+  files: readonly FileInput[],
+  repo: string,
+  prefix: string,
+  rootFiles?: Node,
+) {
+  const dirs = new Map<string, Node>([['', root]])
+  const dirOf = (path: string): Node => {
+    const existing = dirs.get(path)
+    if (existing) return existing
+    const slash = path.lastIndexOf('/')
+    const parent = dirOf(slash === -1 ? '' : path.slice(0, slash))
+    const node: Node = {
+      name: path.slice(slash + 1),
+      path: prefix + path,
+      size: 0,
+      repo,
+      children: [],
+    }
+    parent.children!.push(node)
+    dirs.set(path, node)
+    return node
+  }
+
+  for (const file of files) {
+    const slash = file.path.lastIndexOf('/')
+    const parent = slash === -1 ? (rootFiles ?? root) : dirOf(file.path.slice(0, slash))
+    parent.children!.push({
+      name: file.path.slice(slash + 1),
+      path: prefix + file.path,
+      size: file.size,
+      repo,
+    })
+  }
+}
+
 /**
  * A repository as a city: a nested squarified treemap of its directory tree. Top-level
  * directories become districts, deeper directories blocks inside them, files buildings.
@@ -70,33 +128,54 @@ export function layoutTreeCity(
   files: readonly FileInput[],
   options: TreeCityOptions = {},
 ): TreeCityLayout {
-  const { size: minSize = 120, minBuildingWidth = 1.4, maxSize = 1600, maxFiles = 6000 } = options
-
-  const kept =
-    files.length > maxFiles ? [...files].sort((a, b) => b.size - a.size).slice(0, maxFiles) : files
+  const kept = keepBiggest(files, options.maxFiles ?? 6000)
 
   // Root files are collected in their own district so the root has only directories.
-  const root: Node = { name: '', path: '', size: 0, children: [] }
-  const rootFiles: Node = { name: ROOT_DISTRICT, path: ROOT_DISTRICT, size: 0, children: [] }
-  const dirs = new Map<string, Node>([['', root]])
-
-  const dirOf = (path: string): Node => {
-    const existing = dirs.get(path)
-    if (existing) return existing
-    const slash = path.lastIndexOf('/')
-    const parent = dirOf(slash === -1 ? '' : path.slice(0, slash))
-    const node: Node = { name: path.slice(slash + 1), path, size: 0, children: [] }
-    parent.children!.push(node)
-    dirs.set(path, node)
-    return node
+  const root: Node = { name: '', path: '', size: 0, repo: '', children: [] }
+  const rootFiles: Node = {
+    name: ROOT_DISTRICT,
+    path: ROOT_DISTRICT,
+    size: 0,
+    repo: '',
+    children: [],
   }
-
-  for (const file of kept) {
-    const slash = file.path.lastIndexOf('/')
-    const parent = slash === -1 ? rootFiles : dirOf(file.path.slice(0, slash))
-    parent.children!.push({ name: file.path.slice(slash + 1), path: file.path, size: file.size })
-  }
+  addTree(root, kept, '', '', rootFiles)
   if (rootFiles.children!.length > 0) root.children!.push(rootFiles)
+
+  return layoutNodes(root, options, files.length - kept.length)
+}
+
+/**
+ * Several repositories as one city: every repository is a district, its directories blocks and
+ * its files buildings. Bigger repositories get bigger districts. With more files than maxFiles,
+ * every repository keeps a fair share of its biggest files, so small ones never disappear.
+ */
+export function layoutReposCity(
+  repos: readonly RepoFiles[],
+  options: TreeCityOptions = {},
+): TreeCityLayout {
+  const { maxFiles = 24_000 } = options
+  const root: Node = { name: '', path: '', size: 0, repo: '', children: [] }
+
+  // Smallest repositories first: whatever they leave of their share goes to the bigger ones.
+  let budget = maxFiles
+  let omitted = 0
+  const bySize = [...repos].sort((a, b) => a.files.length - b.files.length)
+  bySize.forEach((repo, i) => {
+    const kept = keepBiggest(repo.files, Math.floor(budget / (bySize.length - i)))
+    budget -= kept.length
+    omitted += repo.files.length - kept.length
+    if (kept.length === 0) return
+    const node: Node = { name: repo.id, path: repo.id, size: 0, repo: repo.id, children: [] }
+    addTree(node, kept, repo.id, `${repo.id}/`)
+    root.children!.push(node)
+  })
+
+  return layoutNodes(root, { maxSize: 4000, ...options }, omitted)
+}
+
+function layoutNodes(root: Node, options: TreeCityOptions, omitted: number): TreeCityLayout {
+  const { size: minSize = 120, minBuildingWidth = 1.4, maxSize = 1600 } = options
 
   const nodes = hierarchy(root)
     .sum((d) => (d.children ? 0 : fileWeight(d.size)))
@@ -150,7 +229,7 @@ export function layoutTreeCity(
 
   tree.each((n) => {
     if (n.depth === 0) return
-    const top = n.ancestors().find((a) => a.depth === 1)!.data.path
+    const top = n.ancestors().find((a) => a.depth === 1)!.data
     if (n.data.children) {
       if (n.depth === 1)
         districts.push({ id: n.data.path, buildingCount: n.leaves().length, ...toPlot(n) })
@@ -159,9 +238,12 @@ export function layoutTreeCity(
       const plot = toPlot(n)
       // Leave a sliver of street between neighbouring files.
       const inset = Math.min(plot.width, plot.depth) * 0.08
+      const { path, repo } = n.data
       buildings.push({
-        id: n.data.path,
-        district: top,
+        id: path,
+        path: repo ? path.slice(repo.length + 1) : path,
+        repo,
+        district: top.path,
         size: n.data.size,
         height: fileHeight(n.data.size),
         depth: plot.depth - inset,
@@ -178,6 +260,6 @@ export function layoutTreeCity(
     districts,
     blocks,
     buildings,
-    omitted: files.length - kept.length,
+    omitted,
   }
 }

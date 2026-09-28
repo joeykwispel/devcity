@@ -47,7 +47,27 @@ const tree = {
   ],
 }
 
-/** Answers GitHub API calls from fixtures, so the Any Repo tests never touch the network. */
+const tools = {
+  ...repo,
+  name: 'tools',
+  full_name: 'octo/tools',
+  description: 'Command line tools',
+  html_url: 'https://github.com/octo/tools',
+}
+const api = { ...repo, name: 'api', full_name: 'octo/api', html_url: 'https://github.com/octo/api' }
+const fork = { ...repo, name: 'fork', full_name: 'octo/fork', fork: true }
+
+const smallTree = {
+  sha: 'root',
+  truncated: false,
+  tree: [
+    { path: 'README.md', type: 'blob', sha: 'a', size: 1200 },
+    { path: 'src/cli.ts', type: 'blob', sha: 'b', size: 8000 },
+    { path: 'src/args.ts', type: 'blob', sha: 'c', size: 2000 },
+  ],
+}
+
+/** Answers GitHub API calls from fixtures, so the City Builder tests never touch the network. */
 export async function mockGitHub(page: Page, { rateLimited = false } = {}) {
   await page.route('https://api.github.com/**', async (route) => {
     const url = new URL(route.request().url())
@@ -66,6 +86,14 @@ export async function mockGitHub(page: Page, { rateLimited = false } = {}) {
       return route.fulfill({ headers: headers(59), body: JSON.stringify(repo) })
     if (url.pathname.startsWith('/repos/octo/demo/git/trees/'))
       return route.fulfill({ headers: headers(58), body: JSON.stringify(tree) })
+    if (url.pathname === '/repos/octo/tools')
+      return route.fulfill({ headers: headers(57), body: JSON.stringify(tools) })
+    if (url.pathname.startsWith('/repos/octo/tools/git/trees/'))
+      return route.fulfill({ headers: headers(56), body: JSON.stringify(smallTree) })
+    if (url.pathname.startsWith('/repos/octo/api/git/trees/'))
+      return route.fulfill({ headers: headers(56), body: JSON.stringify(tree) })
+    if (url.pathname === '/users/octo/repos')
+      return route.fulfill({ headers: headers(55), body: JSON.stringify([repo, tools, api, fork]) })
     return route.fulfill({ status: 404, headers: headers(57), body: '{"message":"Not Found"}' })
   })
 }

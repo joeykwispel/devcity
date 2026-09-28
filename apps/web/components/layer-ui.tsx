@@ -1,9 +1,34 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useEffect, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { SceneToolbar } from './scene-toolbar'
 import { useCityStore } from '@/lib/city-store'
+
+/**
+ * On phones the intro card folds into a title bar, so the city stays visible. LayerShell owns the
+ * state; LayerIntro draws the toggle. Outside the city view nothing folds.
+ */
+const Collapse = createContext<{ collapsed: boolean; toggle: () => void } | null>(null)
+
+function Chevron({ up }: { up: boolean }) {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={`transition-transform duration-200 ${up ? 'rotate-180' : ''}`}
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  )
+}
 
 /** Code-style section head from the portfolio: "01 ~/joey/skills.ts" and "<Skills />". */
 export function LayerIntro({
@@ -19,28 +44,56 @@ export function LayerIntro({
   intro?: string
   children?: ReactNode
 }) {
+  const t = useTranslations('common')
+  const collapse = useContext(Collapse)
+  const collapsed = collapse?.collapsed ?? false
+  // Only phones fold; from md up the card is always open.
+  const fold = collapsed ? 'max-md:hidden' : ''
+
   return (
     <section
       aria-labelledby="layer-title"
-      className="glass panel pointer-events-auto grid gap-3 p-4 sm:p-5"
+      className={`glass panel pointer-events-auto grid gap-3 p-4 sm:p-5 ${collapsed ? 'max-md:py-2.5' : ''}`}
     >
-      <p className="flex items-center font-mono text-[0.8rem] text-muted" aria-hidden="true">
+      <p
+        className={`flex items-center font-mono text-[0.8rem] text-muted ${fold}`}
+        aria-hidden="true"
+      >
         <span className="mr-2.5 font-bold text-accent-text">{num}</span>
         ~/joey/<span className="text-text">{slug}</span>
         <span className="text-accent-2-text">.ts</span>
       </p>
-      <h1
-        id="layer-title"
-        className="font-mono text-[clamp(1.4rem,3vw,1.9rem)] leading-tight font-bold tracking-tighter"
-      >
-        <span className="font-medium text-accent-text opacity-55" aria-hidden="true">
-          &lt;
-        </span>
-        {title}
-        <span className="font-medium text-accent-text opacity-55" aria-hidden="true">
-          {' /'}&gt;
-        </span>
-      </h1>
+      <div className="flex items-center justify-between gap-3">
+        <h1
+          id="layer-title"
+          className={`min-w-0 truncate font-mono leading-tight font-bold tracking-tighter ${collapsed ? 'max-md:text-[1.15rem]' : ''} text-[clamp(1.4rem,3vw,1.9rem)]`}
+        >
+          <span className="font-medium text-accent-text opacity-55" aria-hidden="true">
+            &lt;
+          </span>
+          {title}
+          <span className="font-medium text-accent-text opacity-55" aria-hidden="true">
+            {' /'}&gt;
+          </span>
+        </h1>
+        {collapse && (
+          <button
+            type="button"
+            className="chip h-8 shrink-0 gap-1.5 px-2.5 md:hidden"
+            aria-expanded={!collapsed}
+            aria-controls="layer-intro-body"
+            onClick={collapse.toggle}
+          >
+            {/* Open, the card needs the width for its title: the chevron says enough. */}
+            {collapsed ? (
+              <span className="font-mono text-[0.72rem]">{t('showDetails')}</span>
+            ) : (
+              <span className="sr-only">{t('hideDetails')}</span>
+            )}
+            <Chevron up={!collapsed} />
+          </button>
+        )}
+      </div>
       {intro && (
         <p className="hidden text-[0.9rem] text-muted sm:block">
           <span className="font-mono" aria-hidden="true">
@@ -49,7 +102,11 @@ export function LayerIntro({
           {intro}
         </p>
       )}
-      {children}
+      {children && (
+        <div id="layer-intro-body" className={`grid gap-3 ${fold}`}>
+          {children}
+        </div>
+      )}
     </section>
   )
 }
@@ -84,7 +141,7 @@ export function DetailPanel({
     <aside
       aria-live="polite"
       aria-label={label}
-      className="glass panel pointer-events-auto grid max-h-[55dvh] gap-3 overflow-y-auto p-4 sm:p-5"
+      className="glass panel pointer-events-auto grid max-h-[42dvh] gap-3 overflow-y-auto overscroll-contain p-4 sm:max-h-[55dvh] sm:p-5"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="grid min-w-0 gap-1">
@@ -156,6 +213,7 @@ export function LayerShell({
   list,
   legend,
   tools,
+  introOpen = false,
 }: {
   scene: ReactNode
   intro: ReactNode
@@ -170,8 +228,25 @@ export function LayerShell({
   legend?: ReactNode
   /** Extra toolbar buttons for this layer. */
   tools?: ReactNode
+  /**
+   * Unfolds the intro card on phones, e.g. while it asks for input. When it turns false again the
+   * card folds, to show the city that input produced.
+   */
+  introOpen?: boolean
 }) {
   const view = useCityStore((s) => s.view)
+  const selected = useCityStore((s) => s.selected)
+  const [collapsed, setCollapsed] = useState(!introOpen)
+
+  // Follow introOpen and fold for a selected building (its panel needs the room), without an
+  // effect: adjusting state during render skips the extra paint.
+  const [seen, setSeen] = useState({ introOpen, selected })
+  if (seen.introOpen !== introOpen || seen.selected !== selected) {
+    setSeen({ introOpen, selected })
+    if (seen.introOpen !== introOpen) setCollapsed(!introOpen)
+    else if (selected) setCollapsed(true)
+  }
+  const collapse = { collapsed, toggle: () => setCollapsed((c) => !c) }
 
   if (view === 'list' && list)
     return (
@@ -195,9 +270,11 @@ export function LayerShell({
     <>
       <div className="absolute inset-0">{scene}</div>
 
-      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 flex max-h-[calc(100dvh-var(--nav-h)-1.5rem)] w-[min(380px,calc(100%-2rem))] flex-col xl:max-h-[calc(100dvh-var(--nav-h)-3.5rem)] gap-3 overflow-y-auto [scrollbar-width:none] sm:left-6">
-        <div className="shrink-0">{intro}</div>
+      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 flex max-h-[calc(100dvh-var(--nav-h)-1.5rem)] w-[min(380px,calc(100%-2rem))] flex-col gap-3 overflow-y-auto overscroll-contain [scrollbar-width:none] max-md:max-h-[62dvh] sm:left-6 xl:max-h-[calc(100dvh-var(--nav-h)-3.5rem)]">
         <div className="shrink-0">
+          <Collapse.Provider value={collapse}>{intro}</Collapse.Provider>
+        </div>
+        <div className={`shrink-0 ${collapsed ? 'max-md:hidden' : ''}`}>
           <SceneToolbar>{tools}</SceneToolbar>
         </div>
         {legend && (

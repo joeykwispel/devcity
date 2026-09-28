@@ -51,14 +51,14 @@ test('career stack tags link into the skills city', async ({ page }) => {
   await expect(page.getByRole('complementary', { name: 'D3.js details' })).toBeVisible()
 })
 
-test.describe('any repo', () => {
+test.describe('city builder', () => {
   test('builds a city from the GitHub API and shows the rate limit', async ({ page }) => {
     await mockGitHub(page)
-    await page.goto('/en/any-repo/')
-    await page.getByLabel('GitHub repository').fill('https://github.com/octo/demo')
-    await page.getByRole('button', { name: 'Build city' }).click()
+    await page.goto('/en/city-builder/')
+    await page.getByLabel('Add GitHub repositories').fill('https://github.com/octo/demo')
+    await page.getByRole('button', { name: 'Add', exact: true }).click()
 
-    await expect(page).toHaveURL(/repo=octo%2Fdemo|repo=octo\/demo/)
+    await expect(page).toHaveURL(/repos=octo%2Fdemo|repos=octo\/demo/)
     await expect(page.getByText('A demo repository')).toBeVisible()
     await expect(page.getByText(/58 of 60 GitHub requests left/)).toBeVisible()
     await expect(page.locator('canvas')).toBeVisible()
@@ -71,17 +71,58 @@ test.describe('any repo', () => {
     )
   })
 
+  test('grows several repositories into one city and removes them again', async ({ page }) => {
+    await mockGitHub(page)
+    await page.goto('/en/city-builder/?repos=octo/demo')
+    await page.getByLabel('Add GitHub repositories').fill('octo/tools, octo')
+    await page.getByRole('button', { name: 'Add', exact: true }).click()
+
+    await expect(page).toHaveURL(/repos=octo%2Fdemo%2Cocto%2Ftools%2Cocto%2Fapi/)
+    await expect(page.getByRole('heading', { name: /In this city \(3\)/ })).toBeVisible()
+    await expect(page.getByText('3 files')).toBeVisible()
+    await expect(page.locator('canvas')).toBeVisible()
+
+    await page.getByRole('radio', { name: 'List' }).click()
+    await page.getByRole('button', { name: /^src\/cli\.ts/ }).click()
+    await expect(page.getByRole('link', { name: 'Open file on GitHub' })).toHaveAttribute(
+      'href',
+      'https://github.com/octo/tools/blob/main/src/cli.ts',
+    )
+
+    await page.getByRole('button', { name: 'Remove octo/tools' }).click()
+    await expect(page).not.toHaveURL(/octo%2Ftools/)
+    await expect(page.getByRole('heading', { name: /In this city \(2\)/ })).toBeVisible()
+  })
+
+  test('keeps old any-repo links working', async ({ page }) => {
+    await mockGitHub(page)
+    await page.goto('/en/any-repo/?repo=octo/demo')
+    await expect(page).toHaveURL(/\/en\/city-builder\/\?repos=octo/)
+    await expect(page.getByText('A demo repository')).toBeVisible()
+  })
+
   test('explains an exhausted rate limit', async ({ page }) => {
     await mockGitHub(page, { rateLimited: true })
-    await page.goto('/en/any-repo/?repo=octo/demo')
+    await page.goto('/en/city-builder/?repos=octo/demo')
     await expect(page.getByText(/GitHub rate limit reached/)).toBeVisible()
   })
 
   test('rejects input that is not a repository', async ({ page }) => {
-    await page.goto('/en/any-repo/')
-    await page.getByLabel('GitHub repository').fill('not a repo')
-    await page.getByRole('button', { name: 'Build city' }).click()
+    await page.goto('/en/city-builder/')
+    await page.getByLabel('Add GitHub repositories').fill('not a repo!')
+    await page.getByRole('button', { name: 'Add', exact: true }).click()
     await expect(page.getByText('Use owner/repo')).toBeVisible()
+  })
+
+  test('folds the intro on phones so the city stays visible @mobile', async ({ page }) => {
+    await mockGitHub(page)
+    await page.goto('/en/city-builder/?repos=octo/demo')
+    await expect(page.locator('canvas')).toBeVisible()
+    const toggle = page.getByRole('button', { name: 'Show details' })
+    if (!(await toggle.isVisible())) return // Desktop: the card never folds.
+    await expect(page.getByLabel('Add GitHub repositories')).toBeHidden()
+    await toggle.click()
+    await expect(page.getByLabel('Add GitHub repositories')).toBeVisible()
   })
 })
 

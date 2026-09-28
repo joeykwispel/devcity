@@ -10,7 +10,7 @@ const pages = [
   '/nl/',
   '/en/career/',
   '/en/repos/',
-  '/en/any-repo/?repo=octo/demo',
+  '/en/city-builder/?repos=octo/demo',
   '/en/?view=list',
   '/nl/career/?view=list',
   '/en/repos/?view=list',

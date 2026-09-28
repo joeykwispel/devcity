@@ -3,7 +3,7 @@ export const layers = [
   { id: 'skills', href: '/', label: 'skills' },
   { id: 'career', href: '/career', label: 'career' },
   { id: 'repos', href: '/repos', label: 'repos' },
-  { id: 'any-repo', href: '/any-repo', label: 'anyRepo' },
+  { id: 'city-builder', href: '/city-builder', label: 'cityBuilder' },
 ] as const
 
 export type LayerId = (typeof layers)[number]['id']

@@ -18,7 +18,7 @@ export const minutesUntil = (reset: Date, now: number) =>
   Math.max(1, Math.ceil((reset.getTime() - now) / 60_000))
 
 export function RateLimitBadge() {
-  const t = useTranslations('anyRepo')
+  const t = useTranslations('cityBuilder')
   const rateLimit = useRateLimit((s) => s.rateLimit)
   const now = useTick(30_000)
   if (!rateLimit) return null

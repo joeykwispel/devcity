@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fileHeight, layoutTreeCity, ROOT_DISTRICT } from './tree-city'
+import { fileHeight, layoutReposCity, layoutTreeCity, ROOT_DISTRICT } from './tree-city'
 
 const files = [
   { path: 'README.md', size: 2_000 },
@@ -94,5 +94,72 @@ describe('layoutTreeCity', () => {
 
   it('handles an empty repository', () => {
     expect(layoutTreeCity([])).toMatchObject({ districts: [], buildings: [], omitted: 0 })
+  })
+})
+
+describe('layoutReposCity', () => {
+  const repos = [
+    { id: 'octo/demo', files },
+    { id: 'octo/tiny', files: [{ path: 'index.js', size: 500 }] },
+  ]
+  const city = layoutReposCity(repos, { size: 100 })
+
+  it('makes every repository a district and its folders blocks', () => {
+    expect(city.districts.map((d) => d.id).sort()).toEqual(['octo/demo', 'octo/tiny'])
+    expect(city.blocks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: 'octo/demo/src', level: 1 }),
+        expect.objectContaining({ id: 'octo/demo/src/lib', level: 2 }),
+      ]),
+    )
+  })
+
+  it('keeps file ids unique and remembers the repository and path', () => {
+    const util = city.buildings.find((b) => b.id === 'octo/demo/src/lib/util.ts')!
+    expect(util).toMatchObject({
+      repo: 'octo/demo',
+      path: 'src/lib/util.ts',
+      district: 'octo/demo',
+    })
+    expect(
+      inside(
+        city.districts.find((d) => d.id === 'octo/demo')!,
+        util,
+      ),
+    ).toBe(true)
+    expect(city.buildings.find((b) => b.repo === 'octo/tiny')?.path).toBe('index.js')
+  })
+
+  it('gives every repository a fair share of maxFiles', () => {
+    const big = Array.from({ length: 1_000 }, (_, i) => ({ path: `f${i}`, size: 10_000 + i }))
+    const capped = layoutReposCity(
+      [
+        { id: 'a/big', files: big },
+        { id: 'a/small', files: files },
+      ],
+      { maxFiles: 100 },
+    )
+    expect(capped.buildings.filter((b) => b.repo === 'a/small')).toHaveLength(files.length)
+    expect(capped.buildings).toHaveLength(100)
+    expect(capped.omitted).toBe(1_000 + files.length - 100)
+  })
+
+  it('scales to a hundred repositories', () => {
+    const many = Array.from({ length: 100 }, (_, r) => ({
+      id: `org/repo${r}`,
+      files: Array.from({ length: 150 }, (_, i) => ({
+        path: `src/m${i % 6}/file${i}.ts`,
+        size: 300 + ((i * r * 7919) % 30_000),
+      })),
+    }))
+    const big = layoutReposCity(many)
+    expect(big.districts).toHaveLength(100)
+    expect(big.buildings).toHaveLength(15_000)
+    const widths = big.buildings.map((b) => Math.min(b.width, b.depth)).sort((a, b) => a - b)
+    expect(widths[Math.floor(widths.length * 0.1)]).toBeGreaterThanOrEqual(1.4 * 0.92)
+  })
+
+  it('handles no repositories', () => {
+    expect(layoutReposCity([])).toMatchObject({ districts: [], buildings: [], omitted: 0 })
   })
 })

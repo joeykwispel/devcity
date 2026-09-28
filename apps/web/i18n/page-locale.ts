@@ -14,7 +14,7 @@ export async function pageLocale(params: Promise<{ locale: string }>): Promise<L
 /** "<Layer> · DevCity · Joey Oosenbrug", so every layer has its own document title. */
 export async function layerMetadata(
   params: Promise<{ locale: string }>,
-  layer: 'skills' | 'career' | 'repos' | 'anyRepo',
+  layer: 'skills' | 'career' | 'repos' | 'cityBuilder',
 ) {
   const locale = await pageLocale(params)
   const t = await getTranslations({ locale })

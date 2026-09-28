@@ -2,7 +2,7 @@
 
 [![DevCity: my skills as a 3D city at night, with lit windows, traffic and a minimap](docs/preview.png)](https://devcity.joeyoosenbrug.nl)
 
-My CV and GitHub, rendered as cities you can fly around. Every skill, job, repository and file becomes a building: the taller it is, the more there is behind it. And you can point it at **any public GitHub repository**.
+My CV and GitHub, rendered as cities you can fly around. Every skill, job, repository and file becomes a building: the taller it is, the more there is behind it. And you can build a city out of **any public GitHub repositories**: one, a handful, or a whole organisation.
 
 **Live:** [devcity.joeyoosenbrug.nl](https://devcity.joeyoosenbrug.nl) · **Portfolio:** [joeyoosenbrug.nl](https://joeyoosenbrug.nl)
 
@@ -10,12 +10,12 @@ It is the 3D companion to my [portfolio](https://github.com/joeykwispel/Portfoli
 
 ## Four cities
 
-| Layer        | District                                     | Building                  | Height                  |
-| ------------ | -------------------------------------------- | ------------------------- | ----------------------- |
-| **Skills**   | Skill category                               | One skill                 | Years of hands-on use   |
-| **Career**   | Work / education, along a timeline boulevard | One job or course         | Technologies used there |
-| **My repos** | One of my repositories, plus contributions   | One language in that repo | Commit count            |
-| **Any repo** | Top-level folder (nested folders as blocks)  | One file                  | File size               |
+| Layer            | District                                                                                  | Building                  | Height                  |
+| ---------------- | ----------------------------------------------------------------------------------------- | ------------------------- | ----------------------- |
+| **Skills**       | Skill category                                                                            | One skill                 | Years of hands-on use   |
+| **Career**       | Work / education, along a timeline boulevard                                              | One job or course         | Technologies used there |
+| **My repos**     | One of my repositories, plus contributions                                                | One language in that repo | Commit count            |
+| **City builder** | Top-level folder, or one repository per district when you add several (folders as blocks) | One file                  | File size               |
 
 Years of experience are derived from the roles in `cv.json` (overlapping roles count once) and recalculated in the browser, so the skills city keeps growing without a redeploy.
 
@@ -27,7 +27,7 @@ Years of experience are derived from the roles in `cv.json` (overlapping roles c
 - **Save PNG** of the current view.
 - **Shareable URLs:** selection, focused district and view are in the link (`/en/?select=React`), and the language switcher keeps them.
 - **List view** for every layer: the accessible, keyboard-first equivalent of the canvas. Escape closes panels, `prefers-reduced-motion` stops all animation, and every layer passes axe WCAG 2.2 AA checks in both languages and themes.
-- **Any repo** handles huge repositories (GitHub's truncated trees are walked folder by folder within a request budget), caches everything in IndexedDB with ETags so revisits cost no rate limit, and shows how many GitHub requests you have left.
+- **City builder** grows up to 100 repositories into one city (type `owner/repo`, several at once, or a user name to add everything they own), handles huge repositories (GitHub's truncated trees are walked folder by folder within a request budget), caches everything in IndexedDB with ETags so revisits cost no rate limit, and shows how many GitHub requests you have left.
 
 ## Roadmap
 
@@ -36,7 +36,7 @@ Years of experience are derived from the roles in `cv.json` (overlapping roles c
 - [x] **3.** Dutch/English (next-intl) and the layer switcher
 - [x] **4.** Career layer: roles and education on a timeline boulevard
 - [x] **5.** My Repos layer, generated at build time by `scripts/build-data.ts`
-- [x] **6.** `github-client` + Any Repo layer (TanStack Query, IndexedDB cache, rate-limit UI)
+- [x] **6.** `github-client` + Any Repo layer, now the City builder (TanStack Query, IndexedDB cache, rate-limit UI)
 - [x] **7.** Accessibility, list view, share URLs, Storybook
 - [x] **8.** Polish: day/night, minimap, PNG export, smog, traffic
 - [x] **9.** Hono edge proxy on Cloudflare Workers (optional, see below)
@@ -60,7 +60,7 @@ Years of experience are derived from the roles in `cv.json` (overlapping roles c
 
 ```
 apps/web/
-  app/[locale]/           Routes per language: skills (/), career, repos, any-repo
+  app/[locale]/           Routes per language: skills (/), career, repos, city-builder
   components/             Header, layer shell, list view, toolbar, Shadcn UI
   components/scene/       Shared 3D scene: buildings, atmosphere, traffic, smog, minimap
   features/               One folder per layer
@@ -135,7 +135,7 @@ Set them under **Settings → Secrets and variables → Actions**.
 
 ### Optional: the GitHub proxy
 
-Without it, visitors of the Any Repo layer use their own anonymous GitHub budget of 60 requests per hour (a repository usually costs 2). With it, they share a token with 5,000 per hour, and the edge caches every answer for 10 minutes.
+Without it, visitors of the City builder use their own anonymous GitHub budget of 60 requests per hour (a repository usually costs 2). With it, they share a token with 5,000 per hour, and the edge caches every answer for 10 minutes.
 
 1. Create a Cloudflare account and an API token with **Edit Cloudflare Workers** permission.
 2. Add the `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and `GH_PROXY_TOKEN` secrets. The next push to `apps/proxy` (or a manual run of **Deploy proxy**) deploys it.

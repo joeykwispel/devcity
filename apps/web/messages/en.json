@@ -11,7 +11,7 @@
     "skills": "Skills",
     "career": "Career",
     "repos": "My repos",
-    "anyRepo": "Any repo"
+    "cityBuilder": "City builder"
   },
   "common": {
     "loading": "building city...",
@@ -23,7 +23,9 @@
     "hint": "drag to pan · right-drag to rotate · scroll to zoom · click a building",
     "comingSoon": "This layer is under construction.",
     "durationYears": "{count, plural, one {# yr} other {# yrs}}",
-    "durationMonths": "{count, plural, one {# mo} other {# mos}}"
+    "durationMonths": "{count, plural, one {# mo} other {# mos}}",
+    "showDetails": "Show details",
+    "hideDetails": "Hide details"
   },
   "skills": {
     "title": "Skills",
@@ -98,14 +100,26 @@
     "generated": "Data from GitHub, {date}",
     "empty": "No public repositories found."
   },
-  "anyRepo": {
-    "title": "Any repo",
-    "intro": "Type any public GitHub repository and walk through it. Top-level folders are districts, nested folders are blocks, files are buildings: the bigger the file, the taller the building.",
-    "label": "GitHub repository",
-    "placeholder": "owner/repo or GitHub URL",
-    "submit": "Build city",
-    "invalid": "Use owner/repo, for example facebook/react.",
+  "cityBuilder": {
+    "title": "City builder",
+    "intro": "Build a city out of public GitHub repositories. Add one to walk through it, or add several (or everything a user or organisation owns) and they grow into one city: every repository is a district, folders are blocks, files are buildings.",
+    "label": "Add GitHub repositories",
+    "placeholder": "owner/repo, URL or GitHub user",
+    "submit": "Add",
+    "invalid": "Use owner/repo (like facebook/react) or a GitHub user name. Separate several with spaces or commas.",
     "examples": "Try",
+    "allRepos": "{user}/* (all repos)",
+    "inCity": "In this city",
+    "clear": "Clear all",
+    "remove": "Remove {repo}",
+    "focusRepo": "Highlight {repo}",
+    "limit": "A city holds up to {max} repositories; the rest were not added.",
+    "importing": "Listing the repositories of {user}...",
+    "importEmpty": "{user} has no public repositories of their own.",
+    "progress": "Fetching {done} of {total} repositories...",
+    "repoFailed": "failed",
+    "repoLoading": "loading",
+    "repoFiles": "{count, plural, one {# file} other {# files}}",
     "loadingRepo": "Looking up {repo}...",
     "loadingTree": "Fetching the file tree...",
     "notFound": "{repo} does not exist or is private.",
@@ -116,20 +130,22 @@
     "viaProxy": "via proxy",
     "cached": "cached",
     "stats": {
+      "repos": "repos",
       "files": "files",
       "size": "size",
       "stars": "stars",
       "branch": "branch"
     },
-    "truncated": "This repository is very large. The city shows the part GitHub returned within the request budget.",
+    "truncated": "{count, plural, one {This repository is} other {# repositories are}} very large. The city shows the part GitHub returned within the request budget.",
     "omitted": "{count, plural, one {# small file is} other {# small files are}} left out to keep the city fast.",
     "details": "{name} details",
     "path": "path",
     "language": "language",
     "size": "size",
+    "repo": "repository",
     "openFile": "Open file on GitHub",
     "openRepo": "Open on GitHub",
-    "empty": "Pick a repository to build its city."
+    "empty": "Add a repository to start building."
   },
   "list": {
     "filter": "Filter by name",

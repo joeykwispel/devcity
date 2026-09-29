@@ -187,7 +187,7 @@ export function CityBuilderIntro({
           {languages.length > 0 && (
             <ul className="flex flex-wrap gap-1.5">
               {languages.map(([lang, bytes]) => (
-                <li key={lang} className="chip h-7 whitespace-nowrap">
+                <li key={lang} className="chip chip-sm whitespace-nowrap">
                   <span
                     className="size-2.5 rounded-full"
                     style={{ background: tone(languageColor(lang), theme) }}

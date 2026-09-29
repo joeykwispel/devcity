@@ -51,6 +51,13 @@
     border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
     box-shadow: 0 0 0 4px var(--glow);
   }
+  /* Smaller chip for legends and tags inside the sidebar cards. */
+  .chip-sm {
+    height: 28px;
+    gap: 0.4rem;
+    padding: 0 0.55rem;
+    font-size: 0.72rem;
+  }
   .chip:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -62,4 +69,28 @@
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
   }
+}
+
+/*
+ * Fades the bottom edge of a scroll box while there is more to scroll, so a cut-off card reads
+ * as scrollable. Driven by the box's own scroll position; browsers without scroll-driven
+ * animations (and boxes that do not overflow) simply show no fade.
+ */
+@property --scroll-fade {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+@keyframes scroll-fade {
+  from {
+    --scroll-fade: 2rem;
+  }
+  to {
+    --scroll-fade: 0px;
+  }
+}
+@utility scroll-fade {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - var(--scroll-fade)), transparent);
+  animation: scroll-fade linear both;
+  animation-timeline: scroll(self);
 }

@@ -47,16 +47,19 @@ export function LayerIntro({
   const t = useTranslations('common')
   const collapse = useContext(Collapse)
   const collapsed = collapse?.collapsed ?? false
+  const [more, setMore] = useState(false)
+  // Two lines say what the city is; the rest is one click away, so the list keeps its room.
+  const long = (intro?.length ?? 0) > 110
   // Only phones fold; from md up the card is always open.
   const fold = collapsed ? 'max-md:hidden' : ''
 
   return (
     <section
       aria-labelledby="layer-title"
-      className={`glass panel pointer-events-auto grid gap-3 p-4 sm:p-5 ${collapsed ? 'max-md:py-2.5' : ''}`}
+      className={`glass panel pointer-events-auto grid gap-2.5 p-4 ${collapsed ? 'max-md:py-2.5' : ''}`}
     >
       <p
-        className={`flex items-center font-mono text-[0.8rem] text-muted ${fold}`}
+        className={`flex items-center font-mono text-[0.72rem] text-muted ${fold}`}
         aria-hidden="true"
       >
         <span className="mr-2.5 font-bold text-accent-text">{num}</span>
@@ -66,7 +69,7 @@ export function LayerIntro({
       <div className="flex items-center justify-between gap-3">
         <h1
           id="layer-title"
-          className={`min-w-0 truncate font-mono leading-tight font-bold tracking-tighter ${collapsed ? 'max-md:text-[1.15rem]' : ''} text-[clamp(1.4rem,3vw,1.9rem)]`}
+          className={`min-w-0 truncate font-mono text-[1.35rem] leading-tight font-bold tracking-tighter ${collapsed ? 'max-md:text-[1.15rem]' : ''} xl:text-[1.5rem]`}
         >
           <span className="font-medium text-accent-text opacity-55" aria-hidden="true">
             &lt;
@@ -95,15 +98,31 @@ export function LayerIntro({
         )}
       </div>
       {intro && (
-        <p className="hidden text-[0.9rem] text-muted sm:block">
-          <span className="font-mono" aria-hidden="true">
-            {'// '}
-          </span>
-          {intro}
-        </p>
+        <div className="hidden sm:block">
+          <p
+            id="layer-intro-text"
+            className={`text-[0.84rem] leading-relaxed text-muted ${long && !more ? 'line-clamp-2' : ''}`}
+          >
+            <span className="font-mono" aria-hidden="true">
+              {'// '}
+            </span>
+            {intro}
+          </p>
+          {long && (
+            <button
+              type="button"
+              className="font-mono text-[0.7rem] text-accent-text hover:underline"
+              aria-expanded={more}
+              aria-controls="layer-intro-text"
+              onClick={() => setMore((m) => !m)}
+            >
+              {more ? t('less') : t('more')}
+            </button>
+          )}
+        </div>
       )}
       {children && (
-        <div id="layer-intro-body" className={`grid gap-3 ${fold}`}>
+        <div id="layer-intro-body" className={`grid gap-2.5 ${fold}`}>
           {children}
         </div>
       )}
@@ -160,9 +179,9 @@ export function DetailPanel({
 
 export function Stat({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="min-w-0 rounded-[var(--radius-sm)] border border-border bg-surface p-2.5">
-      <dt className="text-[0.7rem] text-muted">{label}</dt>
-      <dd className="truncate">{children}</dd>
+    <div className="min-w-0 rounded-[var(--radius-sm)] border border-border bg-surface px-2.5 py-1.5">
+      <dt className="text-[0.68rem] text-muted">{label}</dt>
+      <dd className="truncate text-[0.85rem]">{children}</dd>
     </div>
   )
 }
@@ -270,8 +289,17 @@ export function LayerShell({
     <>
       <div className="absolute inset-0">{scene}</div>
 
-      <div className="pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 flex max-h-[calc(100dvh-var(--nav-h)-1.5rem)] w-[min(380px,calc(100%-2rem))] flex-col gap-3 overflow-y-auto overscroll-contain [scrollbar-width:none] max-md:max-h-[62dvh] sm:left-6 xl:max-h-[calc(100dvh-var(--nav-h)-3.5rem)]">
-        <div className="shrink-0">
+      {/*
+        Below lg the column scrolls as a whole. From lg up, with the list beside the city, the
+        height is shared out instead: the list always keeps a good part of it, and the intro card
+        scrolls on its own when it cannot fit.
+      */}
+      <div
+        className={`pointer-events-none absolute top-[calc(var(--nav-h)+0.5rem)] left-4 flex max-h-[calc(100dvh-var(--nav-h)-1.5rem)] w-[min(380px,calc(100%-2rem))] flex-col gap-2.5 overflow-y-auto overscroll-contain [scrollbar-width:none] max-md:max-h-[62dvh] sm:left-6 ${legend ? 'lg:overflow-hidden' : ''}`}
+      >
+        <div
+          className={`shrink-0 ${legend ? 'lg:pointer-events-auto lg:min-h-0 lg:shrink lg:overflow-y-auto lg:overscroll-contain lg:rounded-[var(--radius)] lg:[scrollbar-color:var(--border)_transparent] lg:[scrollbar-width:thin] lg:scroll-fade' : ''}`}
+        >
           <Collapse.Provider value={collapse}>{intro}</Collapse.Provider>
         </div>
         <div className={`shrink-0 ${collapsed ? 'max-md:hidden' : ''}`}>
@@ -279,7 +307,7 @@ export function LayerShell({
         </div>
         {legend && (
           // Takes the remaining height and scrolls on its own, so intro and toolbar stay put.
-          <div className="glass panel pointer-events-auto hidden min-h-40 overflow-y-auto overscroll-contain p-4 [scrollbar-color:var(--border)_transparent] [scrollbar-width:thin] lg:block">
+          <div className="glass panel pointer-events-auto hidden min-h-[min(16rem,40dvh)] flex-[1_1_0] scroll-fade overflow-y-auto overscroll-contain p-4 [scrollbar-color:var(--border)_transparent] [scrollbar-width:thin] lg:block">
             {legend}
           </div>
         )}
@@ -289,8 +317,9 @@ export function LayerShell({
         {panel}
       </div>
 
-      {hint && (
-        <p className="pointer-events-none absolute bottom-4 left-6 hidden font-mono text-[0.72rem] text-muted xl:block">
+      {/* Right of the sidebar; gone once a building is picked, when its panel needs the room. */}
+      {hint && !selected && (
+        <p className="pointer-events-none absolute bottom-4 left-[calc(380px+3rem)] hidden font-mono text-[0.72rem] text-muted xl:block">
           <span aria-hidden="true">{'// '}</span>
           {hint}
         </p>

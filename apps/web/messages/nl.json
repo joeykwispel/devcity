@@ -25,7 +25,9 @@
     "durationYears": "{count, plural, one {# jr} other {# jr}}",
     "durationMonths": "{count, plural, one {# mnd} other {# mnd}}",
     "showDetails": "Details tonen",
-    "hideDetails": "Details verbergen"
+    "hideDetails": "Details verbergen",
+    "more": "meer",
+    "less": "minder"
   },
   "skills": {
     "title": "Skills",

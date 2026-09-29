@@ -4,7 +4,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useMemo, useState } from 'react'
-import { CityList, type ListGroup } from '@/components/city-list'
+import { CityLegend, CityList, type ListGroup } from '@/components/city-list'
 import { LayerShell } from '@/components/layer-ui'
 import { CityView, type LabelledDistrict } from '@/components/scene/city-view'
 import { usePathname, useRouter } from '@/i18n/routing'
@@ -228,6 +228,17 @@ function CityBuilder() {
               <CityList groups={groups} interactive={interactive} limit={200} filterable />
             )
           : undefined
+      }
+      legend={
+        layout && (
+          <CityLegend
+            id="city-builder"
+            title={t('cityBuilder.all')}
+            groups={groups}
+            // Keeps the DOM small in a city of many repositories; the filter searches them all.
+            limit={Math.max(20, Math.floor(2000 / groups.length))}
+          />
+        )
       }
     />
   )

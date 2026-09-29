@@ -3,7 +3,7 @@
 import type { MonthIndex } from '@devcity/city-layout'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { CityList, type ListGroup } from '@/components/city-list'
+import { CityLegend, CityList, type ListGroup } from '@/components/city-list'
 import { LayerShell } from '@/components/layer-ui'
 import { CityView } from '@/components/scene/city-view'
 import { useLayerState } from '@/lib/city-store'
@@ -117,6 +117,7 @@ export function CareerView({ buildMonth }: { buildMonth: MonthIndex }) {
       panel={<CareerPanel city={city} />}
       hint={t('common.hint')}
       list={(interactive) => <CityList groups={groups} interactive={interactive} />}
+      legend={<CityLegend id="career" title={t('career.all')} groups={groups} />}
     />
   )
 }

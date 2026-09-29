@@ -43,6 +43,7 @@
   "career": {
     "title": "Career",
     "intro": "My career as a boulevard. Time runs left to right: work on one side, education and training on the other. A building is as long as the job lasted and as tall as the number of technologies I used there.",
+    "all": "All jobs & courses",
     "legend": "Legend",
     "kinds": {
       "work": "Work",
@@ -71,6 +72,7 @@
   "repos": {
     "title": "My repos",
     "intro": "Each of my public repositories is a district and each of its languages a building. Footprint is the share of the code, height grows with the number of commits. Smog hangs over repos nobody has pushed to in a while.",
+    "all": "All repos & languages",
     "stats": {
       "repos": "repos",
       "commits": "commits",
@@ -103,6 +105,7 @@
   "cityBuilder": {
     "title": "City builder",
     "intro": "Build a city out of public GitHub repositories. Add one to walk through it, or add several (or everything a user or organisation owns) and they grow into one city: every repository is a district, folders are blocks, files are buildings.",
+    "all": "All files",
     "label": "Add GitHub repositories",
     "placeholder": "owner/repo, URL or GitHub user",
     "submit": "Add",

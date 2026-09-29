@@ -28,7 +28,7 @@ export function SkillsLegend() {
           <li key={c.id}>
             <button
               type="button"
-              className="chip h-8 whitespace-nowrap"
+              className="chip chip-sm whitespace-nowrap"
               aria-pressed={focused === c.id}
               onClick={() => focus(c.id)}
             >

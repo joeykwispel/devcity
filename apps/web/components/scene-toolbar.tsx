@@ -32,7 +32,13 @@ function ShareButton() {
   }
 
   return (
-    <Button size="sm" onClick={share} aria-live="polite">
+    <Button
+      size="sm"
+      onClick={share}
+      aria-label={copied ? t('copied') : t('share')}
+      title={copied ? t('copied') : t('share')}
+      className="w-8 px-0"
+    >
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -51,7 +57,10 @@ function ShareButton() {
           </>
         )}
       </svg>
-      {copied ? t('copied') : t('share')}
+      {/* The label changes silently; this tells screen readers the link was copied. */}
+      <span className="sr-only" aria-live="polite">
+        {copied ? t('copied') : ''}
+      </span>
     </Button>
   )
 }
@@ -80,7 +89,14 @@ function SavePngButton() {
   }
 
   return (
-    <Button size="sm" onClick={save} disabled={!canvas}>
+    <Button
+      size="sm"
+      onClick={save}
+      disabled={!canvas}
+      aria-label={t('toolbar.savePng')}
+      title={t('toolbar.savePng')}
+      className="w-8 px-0"
+    >
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -92,7 +108,6 @@ function SavePngButton() {
       >
         <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
       </svg>
-      {t('toolbar.savePng')}
     </Button>
   )
 }
@@ -106,7 +121,9 @@ function MinimapToggle() {
       size="sm"
       onClick={toggle}
       aria-pressed={show}
-      className="hidden lg:inline-flex aria-pressed:text-text"
+      aria-label={t('minimap')}
+      title={t('minimap')}
+      className="hidden w-8 px-0 lg:inline-flex aria-pressed:text-text"
     >
       <svg
         viewBox="0 0 24 24"
@@ -118,7 +135,6 @@ function MinimapToggle() {
       >
         <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14" />
       </svg>
-      {t('minimap')}
     </Button>
   )
 }

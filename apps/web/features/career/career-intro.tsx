@@ -36,7 +36,7 @@ export function CareerIntro({ city }: { city: CareerCity }) {
             <li key={kind}>
               <button
                 type="button"
-                className="chip h-8 whitespace-nowrap"
+                className="chip chip-sm whitespace-nowrap"
                 aria-pressed={focused === kind}
                 onClick={() => focus(kind)}
               >

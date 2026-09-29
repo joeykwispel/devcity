@@ -49,7 +49,7 @@ export function ReposIntro({ city }: { city: ReposCity }) {
       >
         {languages.slice(0, 8).map(([lang]) => (
           <li key={lang}>
-            <span className="chip h-8 whitespace-nowrap">
+            <span className="chip chip-sm whitespace-nowrap">
               <span
                 className="size-2.5 rounded-full"
                 style={{ background: tone(languageColor(lang), theme) }}
@@ -65,7 +65,7 @@ export function ReposIntro({ city }: { city: ReposCity }) {
           <li key={d.id}>
             <button
               type="button"
-              className="chip h-8 whitespace-nowrap"
+              className="chip chip-sm whitespace-nowrap"
               aria-pressed={focused === d.id}
               onClick={() => focus(d.id)}
             >

@@ -3,7 +3,7 @@
 import type { MonthIndex } from '@devcity/city-layout'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { CityList, type ListGroup } from '@/components/city-list'
+import { CityLegend, CityList, type ListGroup } from '@/components/city-list'
 import { LayerShell } from '@/components/layer-ui'
 import { CityView } from '@/components/scene/city-view'
 import { useLayerState } from '@/lib/city-store'
@@ -102,15 +102,7 @@ export function SkillsView({ buildMonth }: { buildMonth: MonthIndex }) {
       panel={<SkillPanel city={city} />}
       hint={t('common.hint')}
       list={(interactive) => <CityList groups={groups} interactive={interactive} />}
-      legend={
-        <section aria-labelledby="skills-all" className="grid gap-3">
-          <h2 id="skills-all" className="font-mono text-[0.75rem] text-muted">
-            <span aria-hidden="true">{'// '}</span>
-            {t('skills.all')}
-          </h2>
-          <CityList groups={groups} interactive filterable compact />
-        </section>
-      }
+      legend={<CityLegend id="skills" title={t('skills.all')} groups={groups} />}
     />
   )
 }

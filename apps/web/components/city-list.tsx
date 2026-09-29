@@ -155,3 +155,26 @@ export function CityList({
     </div>
   )
 }
+
+/** The always-visible list next to the city (see LayerShell's `legend`), with its heading. */
+export function CityLegend({
+  id,
+  title,
+  groups,
+  limit,
+}: {
+  id: string
+  title: string
+  groups: ListGroup[]
+  limit?: number
+}) {
+  return (
+    <section aria-labelledby={`${id}-all`} className="grid gap-3">
+      <h2 id={`${id}-all`} className="font-mono text-[0.75rem] text-muted">
+        <span aria-hidden="true">{'// '}</span>
+        {title}
+      </h2>
+      <CityList groups={groups} interactive filterable compact limit={limit} />
+    </section>
+  )
+}

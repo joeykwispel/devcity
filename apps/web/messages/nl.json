@@ -43,6 +43,7 @@
   "career": {
     "title": "Loopbaan",
     "intro": "Mijn loopbaan als boulevard. De tijd loopt van links naar rechts: werk aan de ene kant, opleidingen en cursussen aan de andere. Een gebouw is zo lang als de baan duurde en zo hoog als het aantal technieken dat ik er gebruikte.",
+    "all": "Alle banen & opleidingen",
     "legend": "Legenda",
     "kinds": {
       "work": "Werk",
@@ -71,6 +72,7 @@
   "repos": {
     "title": "Mijn repo's",
     "intro": "Elke publieke repository van mij is een wijk en elke taal daarin een gebouw. Het grondvlak is het aandeel in de code, de hoogte groeit met het aantal commits. Boven repo's waar al lang niemand aan werkt hangt smog.",
+    "all": "Alle repo's & talen",
     "stats": {
       "repos": "repo's",
       "commits": "commits",
@@ -103,6 +105,7 @@
   "cityBuilder": {
     "title": "Stadsbouwer",
     "intro": "Bouw een stad uit publieke GitHub-repositories. Voeg er één toe om erdoorheen te lopen, of voeg er meerdere toe (of alles van een gebruiker of organisatie) en ze groeien uit tot één stad: elke repository is een wijk, mappen zijn blokken, bestanden zijn gebouwen.",
+    "all": "Alle bestanden",
     "label": "GitHub-repositories toevoegen",
     "placeholder": "eigenaar/repo, URL of GitHub-gebruiker",
     "submit": "Toevoegen",

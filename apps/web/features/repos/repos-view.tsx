@@ -2,7 +2,7 @@
 
 import { useFormatter, useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { CityList, type ListGroup } from '@/components/city-list'
+import { CityLegend, CityList, type ListGroup } from '@/components/city-list'
 import { LayerShell } from '@/components/layer-ui'
 import { CityView } from '@/components/scene/city-view'
 import { useLayerState } from '@/lib/city-store'
@@ -114,6 +114,7 @@ export function ReposView({ buildDay }: { buildDay: number }) {
       panel={<ReposPanel city={city} />}
       hint={t('common.hint')}
       list={(interactive) => <CityList groups={groups} interactive={interactive} />}
+      legend={<CityLegend id="repos" title={t('repos.all')} groups={groups} />}
     />
   )
 }

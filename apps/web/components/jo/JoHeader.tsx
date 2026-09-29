@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 /**
  * JoHeader: the joeyoosenbrug.nl header as a React component (Next.js App Router, or any React app).
@@ -13,31 +13,31 @@
  *   />
  */
 
-import { useEffect, useRef } from 'react';
-import { initJoHeader } from './jo-header.js';
+import { useEffect, useRef } from 'react'
+import { initJoHeader } from './jo-header.js'
 
 export interface JoHeaderLink {
-  label: string;
-  href: string;
+  label: string
+  href: string
   /** The page you are on. Links to #sections on the same page are marked automatically. */
-  current?: boolean;
+  current?: boolean
 }
 
 export interface JoHeaderLanguage {
-  code: string;
+  code: string
   /** The same page in that language */
-  href: string;
-  current?: boolean;
+  href: string
+  current?: boolean
 }
 
 export interface JoHeaderLabels {
-  home: string;
-  main: string;
-  language: string;
-  toLight: string;
-  toDark: string;
-  menu: string;
-  search: string;
+  home: string
+  main: string
+  language: string
+  toLight: string
+  toDark: string
+  menu: string
+  search: string
 }
 
 /** The portfolio's own wording, so every app says the same thing. */
@@ -49,7 +49,7 @@ export const joHeaderLabels: Record<'en' | 'nl', JoHeaderLabels> = {
     toLight: 'Switch to light theme',
     toDark: 'Switch to dark theme',
     menu: 'Menu',
-    search: 'Command menu'
+    search: 'Command menu',
   },
   nl: {
     home: 'joeyoosenbrug.nl',
@@ -58,26 +58,35 @@ export const joHeaderLabels: Record<'en' | 'nl', JoHeaderLabels> = {
     toLight: 'Schakel naar licht thema',
     toDark: 'Schakel naar donker thema',
     menu: 'Menu',
-    search: 'Commandomenu'
-  }
-};
-
-export interface JoHeaderProps {
-  links: JoHeaderLink[];
-  languages: JoHeaderLanguage[];
-  labels: JoHeaderLabels;
-  /** Where the <JO/> logo goes. Always the portfolio unless you have a very good reason. */
-  homeHref?: string;
-  /** Shows the Ctrl K button and binds Ctrl/Cmd+K. Leave out when the app has no command menu. */
-  onSearch?: () => void;
+    search: 'Commandomenu',
+  },
 }
 
-export function JoHeader({ links, languages, labels, homeHref = 'https://joeyoosenbrug.nl/', onSearch }: JoHeaderProps) {
-  const ref = useRef<HTMLElement>(null);
-  const search = useRef(onSearch);
-  search.current = onSearch;
+export interface JoHeaderProps {
+  links: JoHeaderLink[]
+  languages: JoHeaderLanguage[]
+  labels: JoHeaderLabels
+  /** Where the <JO/> logo goes. Always the portfolio unless you have a very good reason. */
+  homeHref?: string
+  /** Shows the Ctrl K button and binds Ctrl/Cmd+K. Leave out when the app has no command menu. */
+  onSearch?: () => void
+}
 
-  useEffect(() => initJoHeader(ref.current, onSearch ? { onSearch: () => search.current?.() } : {}), [!!onSearch]);
+export function JoHeader({
+  links,
+  languages,
+  labels,
+  homeHref = 'https://joeyoosenbrug.nl/',
+  onSearch,
+}: JoHeaderProps) {
+  const ref = useRef<HTMLElement>(null)
+  const search = useRef(onSearch)
+  search.current = onSearch
+
+  useEffect(
+    () => initJoHeader(ref.current, onSearch ? { onSearch: () => search.current?.() } : {}),
+    [!!onSearch],
+  )
 
   return (
     <header className="jo-nav" ref={ref}>
@@ -91,7 +100,11 @@ export function JoHeader({ links, languages, labels, homeHref = 'https://joeyoos
           <ul>
             {links.map((l, i) => (
               <li key={l.href}>
-                <a className="jo-nav__link" href={l.href} aria-current={l.current ? 'page' : undefined}>
+                <a
+                  className="jo-nav__link"
+                  href={l.href}
+                  aria-current={l.current ? 'page' : undefined}
+                >
                   <span className="jo-nav__idx">{String(i + 1).padStart(2, '0')}.</span>
                   {l.label}
                 </a>
@@ -101,8 +114,23 @@ export function JoHeader({ links, languages, labels, homeHref = 'https://joeyoos
         </nav>
 
         <div className="jo-nav__tools">
-          <button type="button" className="jo-nav__search" aria-label={labels.search} aria-keyshortcuts="Control+K Meta+K" hidden={!onSearch}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+          <button
+            type="button"
+            className="jo-nav__search"
+            aria-label={labels.search}
+            aria-keyshortcuts="Control+K Meta+K"
+            hidden={!onSearch}
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
               <circle cx="11" cy="11" r="7" />
               <path d="m20 20-3.5-3.5" />
             </svg>
@@ -111,7 +139,12 @@ export function JoHeader({ links, languages, labels, homeHref = 'https://joeyoos
 
           <div className="jo-nav__lang" role="group" aria-label={labels.language}>
             {languages.map((l) => (
-              <a key={l.code} href={l.href} hrefLang={l.code} aria-current={l.current ? 'true' : undefined}>
+              <a
+                key={l.code}
+                href={l.href}
+                hrefLang={l.code}
+                aria-current={l.current ? 'true' : undefined}
+              >
                 {l.code.toUpperCase()}
               </a>
             ))}
@@ -155,7 +188,12 @@ export function JoHeader({ links, languages, labels, homeHref = 'https://joeyoos
             </svg>
           </button>
 
-          <button type="button" className="jo-nav__icon jo-nav__burger" aria-expanded="false" aria-label={labels.menu}>
+          <button
+            type="button"
+            className="jo-nav__icon jo-nav__burger"
+            aria-expanded="false"
+            aria-label={labels.menu}
+          >
             <svg
               className="jo-nav__open"
               width="20"
@@ -186,5 +224,5 @@ export function JoHeader({ links, languages, labels, homeHref = 'https://joeyoos
         </div>
       </div>
     </header>
-  );
+  )
 }

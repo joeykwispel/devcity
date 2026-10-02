@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import { themeScript } from '@joeykwispel/design-kit/theme-script'
+import { tokens } from '@joeykwispel/design-kit/tokens'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { SiteHeader } from '@/components/site-header'
 import { pageLocale } from '@/i18n/page-locale'
 import { routing } from '@/i18n/routing'
 import { env } from '@/lib/env'
-import { tokens } from '@/lib/tokens'
 // Self-hosted: no requests to Google from the visitor's browser.
 import '@fontsource-variable/inter'
 import '@fontsource-variable/jetbrains-mono'
@@ -47,10 +48,6 @@ export const viewport: Viewport = {
   themeColor: tokens.dark.bg,
 }
 
-// Runs before paint so a stored light theme never flashes dark. The jo-theme cookie is shared with
-// the portfolio and the other *.joeyoosenbrug.nl apps (see components/jo/jo-header.js).
-const themeScript = `try{var m=document.cookie.match(/(?:^|; )jo-theme=(dark|light)/);var t=(m&&m[1])||localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')}catch(e){}`
-
 export default async function LocaleLayout({ children, params }: LayoutProps<'/[locale]'>) {
   const locale = await pageLocale(params)
   const t = await getTranslations({ locale, namespace: 'header' })
@@ -58,6 +55,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   return (
     <html lang={locale} data-theme="dark" suppressHydrationWarning>
       <body className="min-h-dvh">
+        {/* The kit's script: runs before paint so a stored light theme never flashes dark. The jo-theme
+            cookie it reads is shared with the portfolio and the other *.joeyoosenbrug.nl apps. */}
         <Script id="theme" strategy="beforeInteractive">
           {themeScript}
         </Script>

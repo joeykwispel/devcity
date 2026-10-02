@@ -1,29 +1,11 @@
 @import 'tailwindcss';
 /* The kit goes in the base layer: it still wins over preflight, but Tailwind utilities win over
    its element styles (a, h2, p, svg), which the city panels rely on. */
-@import '../components/jo/jo-kit.css' layer(base);
-@import '../components/jo/jo-header.css';
+@import '@joeykwispel/design-kit/kit.css' layer(base);
+@import '@joeykwispel/design-kit/header.css';
 
 /* Kit tokens as Tailwind utilities: bg-bg, text-muted, border-border, text-accent-text, font-mono, ... */
-@theme inline {
-  --color-bg: var(--bg);
-  --color-bg-2: var(--bg-2);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-border: var(--border);
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-text: var(--accent-text);
-  --color-accent-ink: var(--accent-ink);
-  --color-accent-2: var(--accent-2);
-  --color-accent-2-text: var(--accent-2-text);
-  --font-sans: var(--font);
-  --font-mono: var(--mono);
-  --radius-card: var(--radius);
-  --radius-control: var(--radius-sm);
-  --ease-jo: var(--ease);
-}
+@import '@joeykwispel/design-kit/tailwind.css';
 
 @layer components {
   .chip {

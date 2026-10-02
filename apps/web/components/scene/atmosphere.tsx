@@ -12,7 +12,7 @@ import {
   type Scene,
 } from 'three'
 import type { Theme } from '@/lib/theme'
-import { tokens } from '@/lib/tokens'
+import { tokens } from '@joeykwispel/design-kit/tokens'
 import { nightUniform } from './scene-store'
 
 // Day is the light theme, night the dark theme; the kit's page backgrounds are the sky and ground.

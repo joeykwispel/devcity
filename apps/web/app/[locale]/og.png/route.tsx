@@ -4,7 +4,7 @@ import { pageLocale } from '@/i18n/page-locale'
 import { routing } from '@/i18n/routing'
 import { cv } from '@/lib/cv'
 import { env } from '@/lib/env'
-import { tokens } from '@/lib/tokens'
+import { tokens } from '@joeykwispel/design-kit/tokens'
 
 // The link preview for chat apps and social sites, rendered once per locale at build time.
 // A route handler rather than opengraph-image.tsx: the static export then writes a real .png,

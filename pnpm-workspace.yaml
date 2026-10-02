@@ -7,3 +7,6 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   workerd: false
+# My own package: a release of the design kit does not have to wait out the release-age delay.
+minimumReleaseAgeExclude:
+  - '@joeykwispel/design-kit'

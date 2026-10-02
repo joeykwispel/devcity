@@ -2,7 +2,7 @@
 
 import type { MouseEvent } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
-import { JoHeader, joHeaderLabels } from '@/components/jo/JoHeader'
+import { JoHeader, joHeaderLabels } from '@joeykwispel/design-kit/react'
 import { routing, usePathname, useRouter, type Locale } from '@/i18n/routing'
 import { env } from '@/lib/env'
 import { LANGUAGE_KEY } from '@/lib/language-redirect'
@@ -15,7 +15,7 @@ const url = (locale: Locale, path: string) =>
 const isLocale = (code: string | null): code is Locale => routing.locales.some((l) => l === code)
 
 /**
- * The portfolio header from the design kit. Its links are plain anchors; plain left clicks are
+ * The portfolio header from the design kit (@joeykwispel/design-kit). Its links are plain anchors; plain left clicks are
  * handed to the router instead, so moving between layers or languages keeps the app loaded and
  * the URL state (a selected building, the list view).
  */
